@@ -12,9 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ImageView im,tick;
+    int i=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,28 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        tick= (ImageView) findViewById(R.id.imageView);
+        im = (ImageView) findViewById(R.id.temp);
+
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(i==1) {
+                im.setAlpha(100);
+                tick.setVisibility(View.VISIBLE);
+                i=0;
+                }
+
+                else if(i==0){
+                    im.setAlpha(255);
+                    tick.setVisibility(View.GONE);
+                    i=1;
+                }
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
