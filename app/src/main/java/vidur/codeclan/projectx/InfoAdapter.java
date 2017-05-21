@@ -1,7 +1,9 @@
 package vidur.codeclan.projectx;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +18,21 @@ import java.util.ArrayList;
  * Created by Sarthak on 21-05-2017.
  */
 
-public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder>{
+public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
 
     ArrayList<InfoClass> info = new ArrayList<InfoClass>();
     Context c;
-    public InfoAdapter (ArrayList<InfoClass> info, Context context){
+
+    public InfoAdapter (ArrayList<InfoClass> info, Context ctx){
 
         this.info = info;
-        c = context;
+        this.c = ctx;
     }
 
     @Override
     public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout,parent,false);
-        InfoViewHolder infoViewHolder = new InfoViewHolder(view);
+        InfoViewHolder infoViewHolder = new InfoViewHolder(view,info,c);
         return infoViewHolder;
     }
 
@@ -37,9 +40,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     public void onBindViewHolder(InfoViewHolder holder, int position) {
 
         InfoClass data = info.get(position);
-        Picasso.with(c)
-                .load(data.getImage_id())
-                .into(holder.image_id);
+        Picasso.with(c).load(data.getImage_id()).into(holder.image_id);
         holder.heading.setText(data.getHeading());
         holder.subheading.setText(data.getSubheading());
         holder.subdisp.setText(data.getSubdisp());
@@ -50,17 +51,39 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
         return info.size();
     }
 
-public static class InfoViewHolder extends RecyclerView.ViewHolder{
+public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     ImageView image_id;
     TextView heading, subheading,subdisp;
+    ArrayList<InfoClass> infoForHolder = new ArrayList<InfoClass>();
+    Context ctx;
 
-    public InfoViewHolder(View view) {
+    public InfoViewHolder(View view, ArrayList<InfoClass> info, Context c) {
         super(view);
-        image_id = (ImageView)view.findViewById(R.id.click1);
+        infoForHolder=info;
+        ctx=c;
+        view.setOnClickListener(this);
+        image_id = (ImageView)view.findViewById(R.id.imageView);
         heading = (TextView) view.findViewById(R.id.textView);
         subheading = (TextView) view.findViewById(R.id.textView1);
         subdisp = (TextView) view.findViewById(R.id.textView2);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int position = getAdapterPosition();
+        Log.i("TAG","Yo"+v.getId()+" Position" + position);
+
+        InfoClass infoClass = this.infoForHolder.get(position);
+        Intent intent = new Intent(ctx, SpecInfo.class);
+
+        intent.putExtra("img_id", infoClass.getImage_id());
+        intent.putExtra("heading_id", infoClass.getHeading());
+        intent.putExtra("subheading_id", infoClass.getSubheading());
+        intent.putExtra("subdisp", infoClass.getSubdisp());
+        this.ctx.startActivity(intent);
 
     }
 }
