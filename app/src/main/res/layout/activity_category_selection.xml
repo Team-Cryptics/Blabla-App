@@ -1,37 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
     tools:context="vidur.codeclan.projectx.CategorySelectionActivity">
 
 
     <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:srcCompat="@drawable/temp"
-    android:id="@+id/temp" />
+        <ImageView
+            android:id="@+id/option1"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/dancenew" />
 
 
-    <ImageView
-    android:id="@+id/imageView"
-    android:layout_width="5dp"
-    android:layout_height="5dp"
-    android:layout_alignBottom="@+id/temp"
-    android:layout_alignLeft="@+id/temp"
-    android:layout_alignRight="@+id/temp"
-    android:layout_alignTop="@+id/temp"
-    android:layout_below="@+id/temp"
-    android:visibility="gone"
-    app:srcCompat="@drawable/tickk" />
+        <ImageView
+            android:id="@+id/click1"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignBottom="@+id/option1"
+            android:layout_alignLeft="@+id/option1"
+            android:layout_alignRight="@+id/option1"
+            android:layout_alignTop="@+id/option1"
+            android:layout_below="@+id/option1"
+            android:visibility="gone"
+            app:srcCompat="@drawable/tickk" />
 
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/rl1">
+
+        <ImageView
+            android:id="@+id/option2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:srcCompat="@drawable/andro" />
+
+
+        <ImageView
+            android:id="@+id/click2"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignBottom="@+id/option2"
+            android:layout_alignLeft="@+id/option2"
+            android:layout_alignRight="@+id/option2"
+            android:layout_alignTop="@+id/option2"
+            android:layout_below="@+id/option2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/tickk" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl2">
+
+        <ImageView
+            android:id="@+id/option3"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/livemusic" />
+
+
+        <ImageView
+            android:id="@+id/click3"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignBottom="@+id/option3"
+            android:layout_alignLeft="@+id/option3"
+            android:layout_alignRight="@+id/option3"
+            android:layout_alignTop="@+id/option3"
+            android:layout_below="@+id/option3"
+            android:visibility="gone"
+            app:srcCompat="@drawable/tickk" />
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_menu_send" />
+
+</RelativeLayout>

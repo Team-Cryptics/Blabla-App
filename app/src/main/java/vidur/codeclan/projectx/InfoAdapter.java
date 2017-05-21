@@ -57,7 +57,7 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder{
 
     public InfoViewHolder(View view) {
         super(view);
-        image_id = (ImageView)view.findViewById(R.id.imageView);
+        image_id = (ImageView)view.findViewById(R.id.click1);
         heading = (TextView) view.findViewById(R.id.textView);
         subheading = (TextView) view.findViewById(R.id.textView1);
         subdisp = (TextView) view.findViewById(R.id.textView2);
