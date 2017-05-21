@@ -9,36 +9,48 @@
         <item>Sarthak</item>
         <item>samarth</item>
         <item>vidur</item>
+<<<<<<< HEAD
         <item>vidur</item>
         <item>vidur</item>
         <item>vidur</item>
+=======
+>>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
 
     </string-array>
     <string-array name="subheading">
         <item>s@gmail.com</item>
         <item>samarth@gmail.com</item>
         <item>vidur@hmail.com</item>
+<<<<<<< HEAD
         <item>vidur@hmail.com</item>
         <item>vidur@hmail.com</item>
         <item>vidur@hmail.com</item>
+=======
+>>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
 
     </string-array>
     <string-array name="subdisp">
         <item>1234</item>
         <item>12233</item>
         <item>8748743</item>
+<<<<<<< HEAD
         <item>12233</item>
         <item>12233</item>
         <item>12233</item>
+=======
+>>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
     </string-array>
 
     <string-array name="image">
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
+<<<<<<< HEAD
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
         <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
+=======
+>>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
     </string-array>
 
 </resources>
