@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vidur.codeclan.projectx.CategorySelectionActivity">
+
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/temp"
+    android:id="@+id/temp" />
+
+
+    <ImageView
+    android:id="@+id/imageView"
+    android:layout_width="5dp"
+    android:layout_height="5dp"
+    android:layout_alignBottom="@+id/temp"
+    android:layout_alignLeft="@+id/temp"
+    android:layout_alignRight="@+id/temp"
+    android:layout_alignTop="@+id/temp"
+    android:layout_below="@+id/temp"
+    android:visibility="gone"
+    app:srcCompat="@drawable/tickk" />
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

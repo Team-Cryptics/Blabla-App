@@ -3,6 +3,8 @@ package vidur.codeclan.projectx;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,11 +16,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView im,tick;
     int i=1;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<InfoClass> list = new ArrayList<InfoClass>();
+    String[] image,heading,subheading,subdisp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,27 +37,25 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tick= (ImageView) findViewById(R.id.imageView);
-        im = (ImageView) findViewById(R.id.temp);
 
-        im.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        image = getResources().getStringArray(R.array.image);
+        heading = getResources().getStringArray(R.array.heading);
+        subheading = getResources().getStringArray(R.array.subheading);
+        subdisp = getResources().getStringArray(R.array.subdisp);
+        int count = 0;
+        for(String Heading : heading)
+        {
+            InfoClass infoClass = new InfoClass(image[count],heading[count],subheading[count], subdisp[count]);
+            count++;
+            list.add(infoClass);
+        }
 
-                if(i==1) {
-                im.setAlpha(100);
-                tick.setVisibility(View.VISIBLE);
-                i=0;
-                }
-
-                else if(i==0){
-                    im.setAlpha(255);
-                    tick.setVisibility(View.GONE);
-                    i=1;
-                }
-
-            }
-        });
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        adapter = new InfoAdapter(list, this);
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
