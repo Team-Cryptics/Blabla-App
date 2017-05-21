@@ -5,4 +5,28 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string-array name="heading">
+        <item>Sarthak</item>
+        <item>samarth</item>
+        <item>vidur</item>
+
+    </string-array>
+    <string-array name="subheading">
+        <item>s@gmail.com</item>
+        <item>samarth@gmail.com</item>
+        <item>vidur@hmail.com</item>
+
+    </string-array>
+    <string-array name="subdisp">
+        <item>1234</item>
+        <item>12233</item>
+        <item>8748743</item>
+    </string-array>
+
+    <string-array name="image">
+        <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
+        <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
+        <item>https://thetab.com/blogs.dir/13/files/2017/04/screen-shot-2017-04-16-at-182134.png</item>
+    </string-array>
+
 </resources>
