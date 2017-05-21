@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx;
 
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,9 +15,11 @@ public class SpecInfo extends AppCompatActivity {
     TextView tv1, tv2, tv3;
     String heading, subheading, subdesp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         heading = getIntent().getStringExtra("heading_id");
         subheading = getIntent().getStringExtra("subheading_id");
@@ -29,13 +32,13 @@ public class SpecInfo extends AppCompatActivity {
         tv2 = (TextView) findViewById(R.id.textView4);
         tv3 = (TextView) findViewById(R.id.textView5);
 
-        // iv1 = (ImageView)findViewById(R.id.imageView2);
 
 
       /*  String msg = getIntent().getStringExtra("img_id");
         Picasso.with(this)
                 .load(msg)
                 .into(iv1);*/
+
 
         tv1.setText(heading);
         tv2.setText(subheading);
@@ -46,7 +49,7 @@ public class SpecInfo extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.spec_info_menu,menu);
+        inflater.inflate(R.menu.spec_info_menu, menu);
         return true;
     }
 
@@ -54,7 +57,6 @@ public class SpecInfo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-
 
 
         }

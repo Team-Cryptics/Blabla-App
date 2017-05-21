@@ -22,6 +22,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
 
     ArrayList<InfoClass> info = new ArrayList<InfoClass>();
     Context c;
+    //Context ctx;
 
     public InfoAdapter (ArrayList<InfoClass> info, Context ctx){
 
@@ -33,6 +34,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout,parent,false);
         InfoViewHolder infoViewHolder = new InfoViewHolder(view,info,c);
+
         return infoViewHolder;
     }
 
