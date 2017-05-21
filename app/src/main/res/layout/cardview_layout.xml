@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -12,32 +12,23 @@
         android:layout_margin="5dp"
         android:elevation="150dp"
         app:cardCornerRadius="15dp">
-=======
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<<<<<<< HEAD
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ll_1">
 
-=======
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-<<<<<<< HEAD
                 android:layout_margin="5dp"
                 app:srcCompat="@color/cardview_light_background" />
 
@@ -51,82 +42,45 @@
                 android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
-=======
-                app:srcCompat="@color/cardview_light_background" />
 
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:layout_margin="3dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:text="Heading"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
-=======
-                android:layout_toRightOf="@+id/imageView"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentTop="true"
-                android:text="Heading" />
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
+
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
+
                 android:layout_margin="3dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:text="Sub heading"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-=======
-                android:layout_below="@+id/textView"
-                android:layout_toRightOf="@+id/imageView"
-                android:textSize="18dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Sub heading" />
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:layout_margin="3dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:text="Short Descriptions"
                 android:textSize="18dp" />
 
+
             </LinearLayout>
-=======
-                android:layout_below="@+id/textView1"
-                android:layout_toRightOf="@+id/imageView"
-                android:textSize="18dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Short Descriptions" />
-
-
-
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
-
-
         </RelativeLayout>
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
     </android.support.v7.widget.CardView>
 
 

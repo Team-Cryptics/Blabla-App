@@ -9,11 +9,8 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:id="@+id/recycler_view1" >
-=======
-        android:id="@+id/recycler_view" >
->>>>>>> f950929c68cf54f6b89468e1de00872f3fc4123c
+
 
     </android.support.v7.widget.RecyclerView>
 
