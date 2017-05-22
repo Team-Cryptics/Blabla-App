@@ -15,9 +15,6 @@ import vidur.codeclan.projectx.FlowTextView;
 import vidur.codeclan.projectx.models.HtmlLink;
 import vidur.codeclan.projectx.models.HtmlObject;
 
-/**
- * Created by Dean on 24/06/2014.
- */
 public class SpanParser {
 
     public SpanParser(FlowTextView flowTextView, PaintHelper paintHelper) {

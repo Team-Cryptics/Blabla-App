@@ -7,9 +7,7 @@ import vidur.codeclan.projectx.models.Area;
 import vidur.codeclan.projectx.models.Line;
 import vidur.codeclan.projectx.models.Obstacle;
 
-/**
- * Created by Dean on 24/06/2014.
- */
+
 public class CollisionHelper {
 
     // static for performance

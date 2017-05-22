@@ -5,9 +5,6 @@ import android.text.TextPaint;
 
 import java.util.ArrayList;
 
-/**
- * Created by Dean on 24/06/2014.
- */
 public class PaintHelper {
     private ArrayList<TextPaint> mPaintHeap = new ArrayList<TextPaint>();
 

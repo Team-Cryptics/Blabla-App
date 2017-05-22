@@ -8,9 +8,7 @@ import java.util.List;
 import vidur.codeclan.projectx.listeners.OnLinkClickListener;
 import vidur.codeclan.projectx.models.HtmlLink;
 
-/**
- * Created by Dean on 24/06/2014.
- */
+
 public class ClickHandler implements View.OnTouchListener{
 
     private final SpanParser mSpanParser;

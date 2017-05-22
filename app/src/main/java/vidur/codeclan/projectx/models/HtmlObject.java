@@ -2,9 +2,7 @@ package vidur.codeclan.projectx.models;
 
 import android.text.TextPaint;
 
-/**
-* Created by Dean on 24/06/2014.
-*/
+
 public class HtmlObject {
 
     public HtmlObject(String content, int start, int end, float xOffset,
