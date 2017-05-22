@@ -69,7 +69,7 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder implements Vi
         infoForHolder=info;
         ctx=c;
         view.setOnClickListener(this);
-        image_id = (ImageView)view.findViewById(R.id.click1);
+        image_id = (ImageView)view.findViewById(R.id.imageView);
         heading = (TextView) view.findViewById(R.id.textView);
         subheading = (TextView) view.findViewById(R.id.textView1);
         subdisp = (TextView) view.findViewById(R.id.textView2);
