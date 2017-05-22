@@ -36,7 +36,7 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
 
     @Override
     public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_article_cardview,parent,false);
         InfoViewHolder infoViewHolder = new InfoViewHolder(view,info,c);
 
         return infoViewHolder;
@@ -69,7 +69,7 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder implements Vi
         infoForHolder=info;
         ctx=c;
         view.setOnClickListener(this);
-        image_id = (ImageView)view.findViewById(R.id.imageView);
+        image_id = (ImageView)view.findViewById(R.id.click1);
         heading = (TextView) view.findViewById(R.id.textView);
         subheading = (TextView) view.findViewById(R.id.textView1);
         subdisp = (TextView) view.findViewById(R.id.textView2);

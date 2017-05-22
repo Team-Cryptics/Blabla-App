@@ -37,7 +37,7 @@ public class PodcastInfoAdapter extends RecyclerView.Adapter<PodcastInfoAdapter.
 
     @Override
     public PodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pod_cardview,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_podcast_cardview,parent,false);
         PodViewHolder podViewHolder = new PodViewHolder(view,pod,c);
 
         return podViewHolder;
