@@ -29,6 +29,7 @@
             app:floatingSearch_searchHint="Search"
             app:floatingSearch_showSearchKey="false"
             app:floatingSearch_suggestionsListAnimDuration="250" />
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home" />

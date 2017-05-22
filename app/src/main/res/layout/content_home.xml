@@ -7,6 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="vidur.codeclan.projectx.HomeActivity"
     android:orientation="vertical"
+    android:background="@color/clear_btn_color"
     tools:showIn="@layout/app_bar_home">
 
 
