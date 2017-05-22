@@ -1,4 +1,4 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,17 +14,21 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import vidur.codeclan.projectx.POJO.ArticleInfoClass;
+import vidur.codeclan.projectx.R;
+import vidur.codeclan.projectx.Activities.ViewArticleActivity;
+
 /**
  * Created by Sarthak on 21-05-2017.
  */
 
-public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
+public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.InfoViewHolder> {
 
-    ArrayList<InfoClass> info = new ArrayList<InfoClass>();
+    ArrayList<ArticleInfoClass> info = new ArrayList<ArticleInfoClass>();
     Context c;
     //Context ctx;
 
-    public InfoAdapter (ArrayList<InfoClass> info, Context ctx){
+    public ArticleInfoAdapter(ArrayList<ArticleInfoClass> info, Context ctx){
 
         this.info = info;
         this.c = ctx;
@@ -41,7 +45,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder
     @Override
     public void onBindViewHolder(InfoViewHolder holder, int position) {
 
-        InfoClass data = info.get(position);
+        ArticleInfoClass data = info.get(position);
         Picasso.with(c).load(data.getImage_id()).into(holder.image_id);
         holder.heading.setText(data.getHeading());
         holder.subheading.setText(data.getSubheading());
@@ -57,10 +61,10 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder implements Vi
 
     ImageView image_id;
     TextView heading, subheading,subdisp;
-    ArrayList<InfoClass> infoForHolder = new ArrayList<InfoClass>();
+    ArrayList<ArticleInfoClass> infoForHolder = new ArrayList<ArticleInfoClass>();
     Context ctx;
 
-    public InfoViewHolder(View view, ArrayList<InfoClass> info, Context c) {
+    public InfoViewHolder(View view, ArrayList<ArticleInfoClass> info, Context c) {
         super(view);
         infoForHolder=info;
         ctx=c;
@@ -78,8 +82,8 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder implements Vi
         int position = getAdapterPosition();
         Log.i("TAG","Yo"+v.getId()+" Position" + position);
 
-        InfoClass infoClass = this.infoForHolder.get(position);
-        Intent intent = new Intent(ctx, SpecInfo.class);
+        ArticleInfoClass infoClass = this.infoForHolder.get(position);
+        Intent intent = new Intent(ctx, ViewArticleActivity.class);
 
         intent.putExtra("img_id", infoClass.getImage_id());
         intent.putExtra("heading_id", infoClass.getHeading());

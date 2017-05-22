@@ -1,12 +1,12 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.POJO;
 
 /**
  * Created by Sarthak on 21-05-2017.
  */
 
-public class InfoClass {
+public class ArticleInfoClass {
 
-    public InfoClass(String image_id, String heading, String subheading,String subdisp)
+    public ArticleInfoClass(String image_id, String heading, String subheading, String subdisp)
     {
         this.image_id=image_id;
         this.heading=heading;
