@@ -3,6 +3,7 @@
     package="vidur.codeclan.projectx">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".PodPlay"
+            android:label="@string/app_name">
+
+        </activity>
         <activity
             android:name="vidur.codeclan.projectx.ViewArticle"
             android:label="FlowTextView Demo" >
