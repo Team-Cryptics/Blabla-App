@@ -1,4 +1,4 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +18,10 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
+import vidur.codeclan.projectx.POJO.ArticleInfoClass;
+import vidur.codeclan.projectx.R;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,7 +31,7 @@ public class HomeActivity extends AppCompatActivity
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<InfoClass> list = new ArrayList<InfoClass>();
+    ArrayList<ArticleInfoClass> list = new ArrayList<ArticleInfoClass>();
     String[] image,heading,subheading,subdisp;
 
     @Override
@@ -45,7 +49,7 @@ public class HomeActivity extends AppCompatActivity
         int count = 0;
         for(String Heading : heading)
         {
-            InfoClass infoClass = new InfoClass(image[count],heading[count],subheading[count], subdisp[count]);
+            ArticleInfoClass infoClass = new ArticleInfoClass(image[count],heading[count],subheading[count], subdisp[count]);
             count++;
             list.add(infoClass);
         }
@@ -54,7 +58,7 @@ public class HomeActivity extends AppCompatActivity
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter = new InfoAdapter(list, this);
+        adapter = new ArticleInfoAdapter(list, this);
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

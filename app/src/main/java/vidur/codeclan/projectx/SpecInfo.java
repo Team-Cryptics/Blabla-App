@@ -3,7 +3,6 @@ package vidur.codeclan.projectx;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,7 +48,7 @@ public class SpecInfo extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.spec_info_menu, menu);
+        inflater.inflate(R.menu.article_view_menu, menu);
         return true;
     }
 

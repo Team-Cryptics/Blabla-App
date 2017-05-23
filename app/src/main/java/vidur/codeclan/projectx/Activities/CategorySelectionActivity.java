@@ -1,4 +1,4 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+
+import vidur.codeclan.projectx.R;
 
 public class CategorySelectionActivity extends AppCompatActivity implements View.OnClickListener {
 

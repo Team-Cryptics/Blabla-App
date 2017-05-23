@@ -1,4 +1,4 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,17 +14,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by Sarthak on 21-05-2017.
- */
+import vidur.codeclan.projectx.POJO.PodcastInfoClass;
+import vidur.codeclan.projectx.Activities.PodcastPlayerActivity;
+import vidur.codeclan.projectx.R;
 
-public class PodAdapter extends RecyclerView.Adapter<PodAdapter.PodViewHolder> {
+//*
+// * Created by Sarthak on 21-05-2017.
 
-    ArrayList<PodClass> pod = new ArrayList<PodClass>();
+
+
+public class PodcastInfoAdapter extends RecyclerView.Adapter<PodcastInfoAdapter.PodViewHolder> {
+
+    ArrayList<PodcastInfoClass> pod = new ArrayList<PodcastInfoClass>();
     Context c;
     //Context ctx;
 
-    public PodAdapter(ArrayList<PodClass> pod, Context ctx){
+    public PodcastInfoAdapter(ArrayList<PodcastInfoClass> pod, Context ctx){
 
         this.pod = pod;
         this.c = ctx;
@@ -32,7 +37,7 @@ public class PodAdapter extends RecyclerView.Adapter<PodAdapter.PodViewHolder> {
 
     @Override
     public PodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pod_cardview,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_podcast_cardview,parent,false);
         PodViewHolder podViewHolder = new PodViewHolder(view,pod,c);
 
         return podViewHolder;
@@ -41,7 +46,7 @@ public class PodAdapter extends RecyclerView.Adapter<PodAdapter.PodViewHolder> {
     @Override
     public void onBindViewHolder(PodViewHolder holder, int position) {
 
-        PodClass data = pod.get(position);
+        PodcastInfoClass data = pod.get(position);
         Picasso.with(c).load(data.getImage_id()).into(holder.image_id);
         holder.heading.setText(data.getHeading());
         holder.subheading.setText(data.getSubheading());
@@ -57,18 +62,18 @@ public static class PodViewHolder extends RecyclerView.ViewHolder implements Vie
 
     ImageView image_id;
     TextView heading, subheading,subdisp;
-    ArrayList<PodClass> podForHolder = new ArrayList<PodClass>();
+    ArrayList<PodcastInfoClass> podForHolder = new ArrayList<PodcastInfoClass>();
     Context ctx;
 
-    public PodViewHolder(View view, ArrayList<PodClass> pod, Context c) {
+    public PodViewHolder(View view, ArrayList<PodcastInfoClass> pod, Context c) {
         super(view);
         podForHolder=pod;
         ctx=c;
         view.setOnClickListener(this);
-        image_id = (ImageView)view.findViewById(R.id.click1);
-        heading = (TextView) view.findViewById(R.id.textView);
-        subheading = (TextView) view.findViewById(R.id.textView1);
-        subdisp = (TextView) view.findViewById(R.id.textView2);
+        image_id = (ImageView)view.findViewById(R.id.imageView1);
+        heading = (TextView) view.findViewById(R.id.textView3);
+        subheading = (TextView) view.findViewById(R.id.textView4);
+        subdisp = (TextView) view.findViewById(R.id.textView5);
 
     }
 
@@ -78,8 +83,8 @@ public static class PodViewHolder extends RecyclerView.ViewHolder implements Vie
         int position = getAdapterPosition();
         Log.i("TAG","Yo"+v.getId()+" Position" + position);
 
-        PodClass podClass = this.podForHolder.get(position);
-        Intent intent = new Intent(ctx, PodPlay.class);
+        PodcastInfoClass podClass = this.podForHolder.get(position);
+        Intent intent = new Intent(ctx, PodcastPlayerActivity.class);
 
         intent.putExtra("img_id", podClass.getImage_id());
         intent.putExtra("heading_id", podClass.getHeading());

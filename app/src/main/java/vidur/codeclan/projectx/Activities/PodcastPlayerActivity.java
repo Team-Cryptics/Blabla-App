@@ -1,4 +1,4 @@
-package vidur.codeclan.projectx;
+package vidur.codeclan.projectx.Activities;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
@@ -13,7 +13,9 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 
-public class PodPlay extends Activity implements OnClickListener, OnTouchListener, OnCompletionListener, OnBufferingUpdateListener {
+import vidur.codeclan.projectx.R;
+
+public class PodcastPlayerActivity extends Activity implements OnClickListener, OnTouchListener, OnCompletionListener, OnBufferingUpdateListener {
 
     private ImageButton buttonPlayPause;
     private SeekBar seekBarProgress;
@@ -30,7 +32,8 @@ public class PodPlay extends Activity implements OnClickListener, OnTouchListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.play_pod);
+        setContentView(R.layout.activity_player_podcast);
+
         initView();
     }
 
