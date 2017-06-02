@@ -19,6 +19,10 @@
 
 
         </activity>
+        <activity android:name=".Activities.WebViewActivity">
+
+
+        </activity>
         <activity
             android:name="vidur.codeclan.projectx.Activities.ViewArticleActivity"
             android:parentActivityName=".Activities.HomeActivity"

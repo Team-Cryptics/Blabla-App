@@ -96,7 +96,7 @@ public class ViewArticleActivity extends ActionBarActivity implements View.OnCli
         inflater.inflate(R.menu.article_view_menu, menu);
         return true;
     }
-
+//////
 
         private void shareIt() {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
