@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import vidur.codeclan.projectx.FlowTextView;
@@ -24,7 +25,7 @@ public class ViewArticleActivity extends ActionBarActivity implements View.OnCli
     private FlowTextView flowTextView;
     TextView tvHeading;
     String heading, subheading, subdesp;
-
+    Button sharebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class ViewArticleActivity extends ActionBarActivity implements View.OnCli
         flowTextView = (FlowTextView) findViewById(R.id. ftv);
         tvHeading = (TextView) findViewById(R.id.textView_article_heading);
 
-
+        sharebutton = (Button)findViewById(R.id.action_share) ;
         heading = getIntent().getStringExtra("heading_id");
         subheading = getIntent().getStringExtra("subheading_id");
         subdesp = getIntent().getStringExtra("subdisp");
@@ -108,6 +109,7 @@ public class ViewArticleActivity extends ActionBarActivity implements View.OnCli
             case R.id.action_decrease_textsize :
                 decreaseFontSize();
                 break;
+            
 
 
 
@@ -115,5 +117,7 @@ public class ViewArticleActivity extends ActionBarActivity implements View.OnCli
 
         return false;
     }
+
+
 }
 
