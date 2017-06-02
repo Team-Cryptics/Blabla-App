@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -46,6 +47,7 @@ public class HomeActivity extends AppCompatActivity
         heading = getResources().getStringArray(R.array.heading);
         subheading = getResources().getStringArray(R.array.subheading);
         subdisp = getResources().getStringArray(R.array.subdisp);
+
         int count = 0;
         for(String Heading : heading)
         {
@@ -61,12 +63,14 @@ public class HomeActivity extends AppCompatActivity
         adapter = new ArticleInfoAdapter(list, this);
         recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_goto_podlist);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                startActivity(new Intent(HomeActivity.this,PodcastListDisplayActivity.class));
             }
         });
 

@@ -2,9 +2,11 @@ package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -43,14 +45,16 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
     }
 
     @Override
-    public void onBindViewHolder(InfoViewHolder holder, int position) {
+    public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
         ArticleInfoClass data = info.get(position);
         Picasso.with(c).load(data.getImage_id()).into(holder.image_id);
         holder.heading.setText(data.getHeading());
         holder.subheading.setText(data.getSubheading());
         holder.subdisp.setText(data.getSubdisp());
-    }
+
+
+}
 
     @Override
     public int getItemCount() {
@@ -81,10 +85,8 @@ public static class InfoViewHolder extends RecyclerView.ViewHolder implements Vi
 
         int position = getAdapterPosition();
         Log.i("TAG","Yo"+v.getId()+" Position" + position);
-
         ArticleInfoClass infoClass = this.infoForHolder.get(position);
         Intent intent = new Intent(ctx, ViewArticleActivity.class);
-
         intent.putExtra("img_id", infoClass.getImage_id());
         intent.putExtra("heading_id", infoClass.getHeading());
         intent.putExtra("subheading_id", infoClass.getSubheading());

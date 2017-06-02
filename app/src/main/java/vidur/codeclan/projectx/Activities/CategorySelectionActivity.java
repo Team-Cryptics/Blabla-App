@@ -19,7 +19,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
         iv_click1 = (ImageView) findViewById(R.id.click1);
         iv_op1 = (ImageView) findViewById(R.id.option1);
         iv_click2 = (ImageView) findViewById(R.id.click2);
@@ -55,7 +55,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
                 select_category(iv_op3, iv_click3, optionArray, 3);
                 break;
 
-            case R.id.fab:
+            case R.id.fab_category_proceed :
                 startActivity(new Intent(CategorySelectionActivity.this, HomeActivity.class));
                 finish();
 
