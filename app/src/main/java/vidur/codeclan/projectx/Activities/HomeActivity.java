@@ -26,8 +26,7 @@ import vidur.codeclan.projectx.R;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ImageView im,tick;
-    int i=1;
+    //FOR ARTICLES
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -46,7 +45,7 @@ public class HomeActivity extends AppCompatActivity
         image = getResources().getStringArray(R.array.image);
         heading = getResources().getStringArray(R.array.heading);
         subheading = getResources().getStringArray(R.array.subheading);
-        subdisp = getResources().getStringArray(R.array.subdisp);
+        subdisp = getResources().getStringArray(R.array.url);
 
         int count = 0;
         for(String Heading : heading)
@@ -67,8 +66,6 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
 
                 startActivity(new Intent(HomeActivity.this,PodcastListDisplayActivity.class));
             }

@@ -26,7 +26,7 @@ public class PodcastListDisplayActivity extends AppCompatActivity {
         image = getResources().getStringArray(R.array.image);
         heading = getResources().getStringArray(R.array.heading);
         subheading = getResources().getStringArray(R.array.subheading);
-        subdisp = getResources().getStringArray(R.array.subdisp);
+        subdisp = getResources().getStringArray(R.array.url);
 
         int count = 0;
         for(String Heading : heading)

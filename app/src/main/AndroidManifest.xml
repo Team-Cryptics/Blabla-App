@@ -19,10 +19,8 @@
 
 
         </activity>
-        <activity
-            android:name="vidur.codeclan.projectx.Activities.ViewArticleActivity"
-            android:parentActivityName=".Activities.HomeActivity"
-            android:theme="@style/AppTheme">
+        <activity android:name=".Activities.WebViewActivity">
+
 
         </activity>
         <activity
