@@ -25,7 +25,7 @@ public class ArticlesFragment extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<ArticleInfoClass> list = new ArrayList<ArticleInfoClass>();
-    String[] image,heading,subheading,subdisp;
+
 
     @Nullable
     @Override
@@ -33,17 +33,10 @@ public class ArticlesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_articles,container,false);
 
-        image = getResources().getStringArray(R.array.image);
-        heading = getResources().getStringArray(R.array.heading);
-        subheading = getResources().getStringArray(R.array.subheading);
-        subdisp = getResources().getStringArray(R.array.url);
+        ArticleInfoClass info = new ArticleInfoClass("https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg","Abc cde","asd hjk","https://en.wikipedia.org/wiki/Acoustic_wave_equation");
 
-        int count = 0;
-        for(String Heading : heading)
-        {
-            ArticleInfoClass infoClass = new ArticleInfoClass(image[count],heading[count],subheading[count], subdisp[count]);
-            count++;
-            list.add(infoClass);
+        for(int i =0;i<10;i++){
+            list.add(i,info);
         }
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_articles);

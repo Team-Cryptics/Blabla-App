@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import vidur.codeclan.projectx.Adapters.PodcastInfoAdapter;
+import vidur.codeclan.projectx.POJO.ArticleInfoClass;
 import vidur.codeclan.projectx.POJO.PodcastInfoClass;
 import vidur.codeclan.projectx.R;
 
@@ -25,7 +26,7 @@ public class PodcastFragment extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<PodcastInfoClass> list = new ArrayList<PodcastInfoClass>();
-    String[] image,heading,subheading,subdisp;
+
 
     @Nullable
     @Override
@@ -33,19 +34,12 @@ public class PodcastFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_podcast,container,false);
 
 
+       PodcastInfoClass info = new PodcastInfoClass("https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg","Abc cde","asd hjk","asdpoiu");
 
-        image = getResources().getStringArray(R.array.image);
-        heading = getResources().getStringArray(R.array.heading);
-        subheading = getResources().getStringArray(R.array.subheading);
-        subdisp = getResources().getStringArray(R.array.url);
-
-        int count = 0;
-        for(String Heading : heading)
-        {
-            PodcastInfoClass podClass = new PodcastInfoClass(image[count],heading[count],subheading[count], subdisp[count]);
-            count++;
-            list.add(podClass);
+        for(int i =0;i<10;i++){
+            list.add(i,info);
         }
+
 
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_podcasts);
         layoutManager = new LinearLayoutManager(getActivity());

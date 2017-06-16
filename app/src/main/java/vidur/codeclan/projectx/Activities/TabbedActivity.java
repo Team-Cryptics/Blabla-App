@@ -3,6 +3,9 @@ package vidur.codeclan.projectx.Activities;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
@@ -58,9 +61,39 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
             }
         });
 
+
+
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.nav_bookmarks :
+                break;
+
+            case R.id.nav_settings:
+                break;
+
+            case R.id.nav_feedback:
+                break;
+
+            case R.id.nav_aboutus:
+                break;
+        }
+
+        return true;
+    }
 
     @Override
     public void onTabSelected(android.app.ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {

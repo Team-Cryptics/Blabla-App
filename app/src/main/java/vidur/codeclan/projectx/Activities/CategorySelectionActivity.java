@@ -56,7 +56,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
                 break;
 
             case R.id.fab_category_proceed :
-                startActivity(new Intent(CategorySelectionActivity.this, HomeActivity.class));
+                startActivity(new Intent(CategorySelectionActivity.this, TabbedActivity.class));
                 finish();
 
         }

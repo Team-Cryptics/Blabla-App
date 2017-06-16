@@ -5,50 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="text">hi this a test app in which are testing wraapping the text around an image and if we are able to do so then we are great and what we do and ik ahve no idea what ia am writing its just that i wanna test this</string>
-    <string-array name="heading">
-        <item>Music</item>
-        <item>samarth</item>
-        <item>vidur</item>
 
-        <item>vidur</item>
-        <item>vidur</item>
-        <item>vidur</item>
-
-
-    </string-array>
-    <string-array name="subheading">
-        <item>Music is an art.</item>
-        <item>samarth@gmail.com</item>
-        <item>vidur@hmail.com</item>
-
-        <item>vidur@hmail.com</item>
-        <item>vidur@hmail.com</item>
-        <item>vidur@hmail.com</item>
-
-
-    </string-array>
-    <string-array name="url">
-        <item>https://en.wikipedia.org/wiki/Acoustic_wave_equation</item>
-        <item>https://en.wikipedia.org/wiki/Electromagnetic_wave_equation</item>
-        <item>8748743</item>
-
-        <item>12233</item>
-        <item>12233</item>
-        <item>12233</item>
-
-    </string-array>
-
-    <string-array name="image">
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-        <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
-
-    </string-array>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
