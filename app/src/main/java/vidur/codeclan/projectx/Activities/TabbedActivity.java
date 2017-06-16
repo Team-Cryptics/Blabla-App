@@ -33,7 +33,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
         actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_TABS);
-
+        actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.color.black));
 
         String[] tabs = { "Videos", "Articles", "Podcasts" };
         for (String tab_name : tabs) {
