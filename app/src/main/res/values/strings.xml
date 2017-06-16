@@ -49,6 +49,12 @@
         <item>https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg</item>
 
     </string-array>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>
