@@ -18,6 +18,9 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name=".Activities.YoutubeActivity">
+
+        </activity>
         <activity
             android:name=".Activities.CategorySelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
