@@ -37,7 +37,7 @@ public class WebViewActivity extends AppCompatActivity {
         web.setWebViewClient(new myWebClient());
         web.getSettings().setJavaScriptEnabled(true);
 
-        web.loadUrl("https://www.google.com");
+        web.loadUrl(url);
 
 
     }
