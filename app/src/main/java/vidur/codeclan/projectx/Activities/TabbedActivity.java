@@ -3,15 +3,28 @@ package vidur.codeclan.projectx.Activities;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
+
+import vidur.codeclan.projectx.POJO.Posts;
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
 
+import static vidur.codeclan.projectx.POJO.GlobalAccess.URL_POST;
+import static vidur.codeclan.projectx.POJO.GlobalAccess.currPosts;
+
 public class TabbedActivity extends FragmentActivity implements android.app.ActionBar.TabListener {
 
+    private static final String TAG = "TabbedActivity";
     ViewPager viewPager;
     TabsPagerAdapter adapter;
     android.app.ActionBar actionBar;
@@ -21,7 +34,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        fetchPosts();
 
         setContentView(R.layout.activity_tabbed);
 
@@ -108,5 +121,21 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     @Override
     public void onTabReselected(android.app.ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
+    }
+
+    public void fetchPosts() {
+        Volley.newRequestQueue(this).add(new StringRequest(URL_POST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        currPosts = new GsonBuilder().create().fromJson(response, Posts.class);
+                        Log.d(TAG, "onResponse: " + response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(TabbedActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 }
