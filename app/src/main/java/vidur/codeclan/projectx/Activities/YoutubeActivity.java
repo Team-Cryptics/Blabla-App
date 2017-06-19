@@ -63,11 +63,6 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         public void onInitializationSuccess(Provider provider,
                                             YouTubePlayer player, boolean wasRestored) {
             YPlayer = player;
- /*
- * Now that this variable YPlayer is global you can access it
- * throughout the activity, and perform all the player actions like
- * play, pause and seeking to a position by code.
- */
             if (!wasRestored) {
                 YPlayer.cueVideo("F1qFB4n9K6Q");
             }

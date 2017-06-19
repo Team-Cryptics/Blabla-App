@@ -19,7 +19,11 @@
 
         </activity>
         <activity android:name=".Activities.YoutubeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.CategorySelectionActivity"
@@ -36,11 +40,7 @@
             android:name=".Activities.WebViewActivity"
             android:parentActivityName=".Activities.TabbedActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
-           <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
