@@ -5,14 +5,11 @@
     android:orientation="vertical" >
 
     <WebView
-        android:id="@+id/webview01"
+        android:id="@+id/webview"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_weight="1">
     </WebView>
 
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"/>
 
 </LinearLayout>

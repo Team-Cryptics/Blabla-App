@@ -6,15 +6,17 @@ package vidur.codeclan.projectx.POJO;
 
 public class ArticleInfoClass {
 
-    public ArticleInfoClass(String image_id, String heading, String subheading, String subdisp)
+    private String image_id, heading, subheading, url;
+
+    public ArticleInfoClass(String image_id, String heading, String subheading, String url)
     {
         this.image_id=image_id;
         this.heading=heading;
         this.subheading=subheading;
-        this.subdisp=subdisp;
+        this.url = url;
     }
 
-    private String image_id, heading, subheading,subdisp;
+
 
     public String getImage_id() {
         return image_id;
@@ -40,12 +42,12 @@ public class ArticleInfoClass {
         this.subheading = subheading;
     }
 
-    public String getSubdisp() {
-        return subdisp;
+    public String getUrl() {
+        return url;
     }
 
-    public void setSubdisp(String subdisp) {
-        this.subdisp = subdisp;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 

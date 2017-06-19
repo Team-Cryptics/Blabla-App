@@ -30,7 +30,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
         optionArray = new int[10];
         optionArray[3] = 1;
         optionArray[1] = 1;
-        optionArray[2] = 1;
+
 
         iv_op1.setOnClickListener(this);
         iv_op2.setOnClickListener(this);
@@ -56,7 +56,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
                 break;
 
             case R.id.fab_category_proceed :
-                startActivity(new Intent(CategorySelectionActivity.this, HomeActivity.class));
+                startActivity(new Intent(CategorySelectionActivity.this, TabbedActivity.class));
                 finish();
 
         }

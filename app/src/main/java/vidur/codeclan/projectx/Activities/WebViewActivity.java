@@ -1,9 +1,12 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -15,19 +18,27 @@ public class WebViewActivity extends AppCompatActivity {
 
 
     WebView web;
-  //  TextView tv1;
+    private ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_web);
-        web = (WebView) findViewById(R.id.webview01);
-      //  tv1 = (TextView)findViewById(R.id.textView);
+        web = (WebView) findViewById(R.id.webview);
+        progress=new ProgressDialog(this);
+        progress.setMessage("Loading ...");
+        //progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setIndeterminate(true);
+      //  progress.setProgress(0);
+        progress.show();
+        String url = getIntent().getStringExtra("url");
 
         web.setWebViewClient(new myWebClient());
         web.getSettings().setJavaScriptEnabled(true);
-        String msg = "Red Fort";
-        web.loadUrl("https://en.wikipedia.org/wiki/"+msg);
+
+        web.loadUrl("https://www.google.com");
+
 
     }
 
@@ -36,7 +47,11 @@ public class WebViewActivity extends AppCompatActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             // TODO Auto-generated method stub
+
             super.onPageStarted(view, url, favicon);
+            Log.i("TAG", "onPageStarted");
+
+
         }
 
         @Override
@@ -44,6 +59,9 @@ public class WebViewActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
 
             view.loadUrl(url);
+            Log.i("TAG", "onoverride");
+            progress.dismiss();
+
             return true;
 
         }
@@ -55,6 +73,7 @@ public class WebViewActivity extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && web.canGoBack()) {
             web.goBack();
+            Log.i("TAG", "onKeyDown");
             return true;
         }
         return super.onKeyDown(keyCode, event);
