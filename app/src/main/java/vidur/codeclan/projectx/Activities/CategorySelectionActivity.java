@@ -30,7 +30,7 @@ public class CategorySelectionActivity extends AppCompatActivity implements View
         optionArray = new int[10];
         optionArray[3] = 1;
         optionArray[1] = 1;
-        optionArray[2] = 1;
+
 
         iv_op1.setOnClickListener(this);
         iv_op2.setOnClickListener(this);
