@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="190sp"
+    android:layout_height="200sp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="190sp"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView_options"
+            />
+
+            <ImageView
+                android:id="@+id/imageView_click_options"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:padding="20dp"
+                android:layout_alignBottom="@+id/imageView_options"
+                android:layout_alignLeft="@+id/imageView_options"
+                android:layout_alignRight="@+id/imageView_options"
+                android:layout_alignTop="@+id/imageView_options"
+                android:layout_below="@+id/imageView_options"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/tickk" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>

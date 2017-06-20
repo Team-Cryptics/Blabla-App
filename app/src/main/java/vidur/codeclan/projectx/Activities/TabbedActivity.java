@@ -123,6 +123,8 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
 
     }
 
+//    http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22email%22,%22op%22:%22eq%22,%22val%22:%22aditya03011997@gmail.com%22}]}
+
     public void fetchPosts() {
         Volley.newRequestQueue(this).add(new StringRequest(URL_POST,
                 new Response.Listener<String>() {
