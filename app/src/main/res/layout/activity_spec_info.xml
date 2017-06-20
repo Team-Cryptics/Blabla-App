@@ -23,6 +23,8 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="Heading"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 tools:layout_editor_absoluteX="162dp"
                 tools:layout_editor_absoluteY="314dp" />

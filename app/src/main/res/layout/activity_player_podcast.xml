@@ -29,6 +29,8 @@
         android:layout_weight="0.5"
         android:text="Podcast Name"
         android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         />
     </LinearLayout>
@@ -48,7 +50,8 @@
             android:background="@null"
             android:onClick="onClick"
             android:src="@drawable/button_play"
-            app:srcCompat="@drawable/button_play" />
+            app:srcCompat="@drawable/button_play"
+            />
 
         <SeekBar
             android:id="@+id/SeekBarTestPlay"

@@ -24,6 +24,8 @@
             <TextView
                 android:id="@+id/textView_article_heading"
                 android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
