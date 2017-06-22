@@ -1,79 +1,125 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import vidur.codeclan.projectx.POJO.CategoriesClass;
 import vidur.codeclan.projectx.R;
 
-public class CategorySelectionActivity extends AppCompatActivity implements View.OnClickListener {
+public class CategorySelectionActivity extends AppCompatActivity {
 
-    ImageView iv_op1, iv_click1, iv_op2, iv_click2, iv_click3, iv_op3;
-    int optionArray[];
-    FloatingActionButton fab;
+    RecyclerView recyclerView;
+    CategoryAdapter adapter;
+    FloatingActionButton fab_proceed;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
-        iv_click1 = (ImageView) findViewById(R.id.click1);
-        iv_op1 = (ImageView) findViewById(R.id.option1);
-        iv_click2 = (ImageView) findViewById(R.id.click2);
-        iv_op2 = (ImageView) findViewById(R.id.option2);
-        iv_click3 = (ImageView) findViewById(R.id.click3);
-        iv_op3 = (ImageView) findViewById(R.id.option3);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_category);
+        fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
+        ArrayList<CategoriesClass> list = new ArrayList<>();
 
-        optionArray = new int[10];
-        optionArray[3] = 1;
-        optionArray[1] = 1;
+        for(int i =0 ; i<20;i++){
+            CategoriesClass obj = new CategoriesClass();
+            obj.setCategoryName("Music");
+            obj.setCategoryImageURL("https://yt3.ggpht.com/0v8T0CTAv8VPxA5lJtz-tqJe-tR-3VQc0ONhD6Az2RWjNRnwh5QQzPYz5I7wbYljU_tQjZ2ok2W59_v_=s900-nd-c-c0xffffffff-rj-k-no");
+            list.add(obj);
+        }
 
+        adapter = new CategoryAdapter(list,this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
 
-        iv_op1.setOnClickListener(this);
-        iv_op2.setOnClickListener(this);
-        iv_op3.setOnClickListener(this);
-        fab.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.option1:
-                select_category(iv_op1, iv_click1, optionArray, 1);
-                break;
-
-            case R.id.option2:
-                select_category(iv_op2, iv_click2, optionArray, 2);
-                break;
-
-            case R.id.option3:
-                select_category(iv_op3, iv_click3, optionArray, 3);
-                break;
-
-            case R.id.fab_category_proceed :
-                startActivity(new Intent(CategorySelectionActivity.this, TabbedActivity.class));
+        fab_proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CategorySelectionActivity.this,TabbedActivity.class));
                 finish();
+            }
+        });
 
-        }
     }
 
-    void select_category(ImageView image, ImageView click, int optionArray[], int index) {
 
-        if (optionArray[index] == 1) {
-            image.setAlpha(100);
-            click.setVisibility(View.VISIBLE);
-            optionArray[index] = 0;
-        } else if (optionArray[index] == 0) {
-            image.setAlpha(255);
-            click.setVisibility(View.GONE);
-            optionArray[index] = 1;
+    private class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder> {
+
+        List<CategoriesClass> list;
+        Context c;
+
+        public CategoryAdapter(ArrayList<CategoriesClass> categoryList, Context context) {
+            list = categoryList;
+            c= context;
         }
 
+        @Override
+        public CategoryAdapter.CategoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_category_recycler, parent, false);
+            return new CategoryHolder(view,list);
+        }
+
+        @Override
+        public void onBindViewHolder(CategoryAdapter.CategoryHolder holder, int position) {
+            Picasso.with(c).load(list.get(position).getCategoryImageURL()).into(holder.iv_category);
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        public class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+
+            ImageView iv_category, iv_click;
+            List<CategoriesClass> list;
+
+            public CategoryHolder(View itemView, List<CategoriesClass> listForHolder) {
+                super(itemView);
+                iv_category = (ImageView) itemView.findViewById(R.id.imageView_options);
+                iv_click = (ImageView) itemView.findViewById(R.id.imageView_click_options);
+                list = listForHolder;
+                iv_category.setOnClickListener(this);
+                iv_click.setOnClickListener(this);
+
+            }
+
+            @Override
+            public void onClick(View view) {
+                int position = getAdapterPosition();
+
+                if(!list.get(position).getClicked()) { //If is clicked is false
+                    list.get(position).setClicked(true);
+                    iv_category.setImageAlpha(100);
+                    iv_click.setVisibility(View.VISIBLE);
+                }
+
+                else {
+                    list.get(position).setClicked(false);
+                    iv_category.setAlpha(255);
+                    iv_click.setVisibility(View.INVISIBLE);
+                }
+            }
+        }
     }
 
 }
