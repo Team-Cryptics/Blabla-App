@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                             etPassword.setEnabled(true);
                         } else if (localUser.getObjects().get(0).getFollowers().get(0).getPwdhash().equals("true")) {
                             Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
-
+///////////////
                             btnLogin.setVisibility(View.VISIBLE);
                             pbLoading.setVisibility(View.GONE);
                             etEmail.setEnabled(true);
