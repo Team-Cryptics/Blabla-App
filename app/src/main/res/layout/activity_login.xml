@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context="vidur.codeclan.projectx.Activities.LoginActivity">
@@ -114,6 +113,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/et_email_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
@@ -126,6 +126,7 @@
                 android:textColorHint="#ffffff">
 
                 <EditText
+                    android:id="@+id/et_password_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -133,11 +134,20 @@
                     android:textColor="#ffffff" />
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forget password"
+                android:id="@+id/tv_forgetPassword"
+                android:layout_marginTop="10dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ProgressBar
+                    android:id="@+id/progress_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -164,13 +174,14 @@
             android:orientation="vertical"
             android:visibility="invisible">
 
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#ffffff"
-                >
+                android:textColorHint="#ffffff">
 
                 <EditText
+                    android:id="@+id/et_nickname_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nickname"
@@ -184,6 +195,7 @@
                 android:textColorHint="#ffffff">
 
                 <EditText
+                    android:id="@+id/et_email_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
@@ -197,6 +209,7 @@
                 android:textColorHint="#ffffff">
 
                 <EditText
+                    android:id="@+id/et_password_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -211,6 +224,7 @@
                 android:textColorHint="#ffffff">
 
                 <EditText
+                    android:id="@+id/et_confirmPassword_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
@@ -223,6 +237,7 @@
                 android:layout_height="match_parent">
 
                 <ProgressBar
+                    android:id="@+id/progress_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
