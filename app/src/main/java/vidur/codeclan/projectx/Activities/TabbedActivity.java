@@ -15,12 +15,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.GsonBuilder;
 
-import vidur.codeclan.projectx.POJO.Posts;
+
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
 
 import static vidur.codeclan.projectx.POJO.GlobalAccess.URL_POST;
-import static vidur.codeclan.projectx.POJO.GlobalAccess.currPosts;
+
 
 public class TabbedActivity extends FragmentActivity implements android.app.ActionBar.TabListener {
 
@@ -130,7 +130,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        currPosts = new GsonBuilder().create().fromJson(response, Posts.class);
+                      //  currPosts = new GsonBuilder().create().fromJson(response, Posts.class);
                         Log.d(TAG, "onResponse: " + response);
                     }
                 }, new Response.ErrorListener() {
