@@ -1,8 +1,12 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,38 +21,78 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.GsonBuilder;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.PUT;
-import vidur.codeclan.projectx.POJO.LoginInfo;
 import vidur.codeclan.projectx.R;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvLogin, tvRegister,tvForgetPassword;
+    private static final String TAG = "lol";
+    TextView tvLogin, tvRegister, tvForgetPassword;
     View vvLogin, vvRegister;
     LinearLayout llLogin, llRegister;
     Button btLogin, btRegister;
     EditText etEmailLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
     String emailLogin, emailReg, passLogin, passReg, passRegConfirm, nickname;
     ProgressBar pbLogin, pbRegister;
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+        final String email = sharedPreferences.getString("email", null);
+        final String passwd = sharedPreferences.getString("password", null);
+
+        progressDialog = new ProgressDialog(this);
+
+        if (passwd != null && email != null ) {
+            progressDialog.setMessage("Please wait");
+            progressDialog.show();
+
+
+            Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("TAG",response);
+                            if (response.equals("true")) {
+
+                                progressDialog.dismiss();
+                                startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                                finish();
+                            }
+
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("email", email);
+                    params.put("password", passwd);
+                    return params;
+                }
+            });
+
+
+        }
+
         setContentView(R.layout.activity_login);
+
 
         tvLogin = (TextView) findViewById(R.id.tv_login);
         tvRegister = (TextView) findViewById(R.id.tv_register);
@@ -68,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pbLogin = (ProgressBar) findViewById(R.id.progress_login);
         pbRegister = (ProgressBar) findViewById(R.id.progress_register);
 
-
         tvLogin.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
         btLogin.setOnClickListener(this);
@@ -76,9 +119,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvForgetPassword.setOnClickListener(this);
 
 
+
     }
-
-
 
 
     @Override
@@ -100,37 +142,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 vvRegister.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_login:
+                //User login
                 emailLogin = etEmailLogin.getText().toString().trim();
                 passLogin = etPassLogin.getText().toString().trim();
+
+                if (TextUtils.isEmpty(emailLogin) || TextUtils.isEmpty(passLogin)) {
+                    Toast.makeText(this, "Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 pbLogin.setVisibility(View.VISIBLE);
                 btLogin.setVisibility(View.INVISIBLE);
 
+                login();
 
-                        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
-                                new com.android.volley.Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        Log.d("TAG", "onResponse: " + response);
-
-
-                                    }
-                                }, new com.android.volley.Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                pbLogin.setVisibility(View.INVISIBLE);
-                                btLogin.setVisibility(View.VISIBLE);
-
-                            }
-                        }) {
-                            @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
-                                HashMap<String, String> params = new HashMap<>();
-                                params.put("email", emailLogin);
-                                params.put("password", passLogin);
-                                return params;
-                            }
-                        });
 
                 break;
 
@@ -140,23 +165,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 passRegConfirm = etPassConfirm.getText().toString().trim();
                 nickname = etNick.getText().toString().trim();
 
+                if (TextUtils.isEmpty(emailReg)) {
+                    Toast.makeText(this, "Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(nickname)) {
+                    Toast.makeText(this, "Please enter a valid nickname", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (!passReg.equals(passRegConfirm)) {
                     Toast.makeText(this, "Passwords donot match", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                pbRegister.setVisibility(View.VISIBLE);
+                btRegister.setVisibility(View.INVISIBLE);
+
                 Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/register.php",
-                        new com.android.volley.Response.Listener<String>() {
+                        new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Log.d("TAG", "onResponse: " + response);
+                                Log.d("TAG",response);
+
+                                if (response.equals("true")) {
+
+                                    llRegister.setVisibility(View.INVISIBLE);
+                                    llLogin.setVisibility(View.VISIBLE);
+                                    vvLogin.setVisibility(View.VISIBLE);
+                                    vvRegister.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(LoginActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }, new com.android.volley.Response.ErrorListener() {
+                        }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        pbRegister.setVisibility(View.INVISIBLE);
+                        btRegister.setVisibility(View.VISIBLE);
                     }
-                }){
+                }) {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         HashMap<String, String> params = new HashMap<>();
@@ -192,5 +242,55 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    void login() {
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("TAG", "onResponse: " + response);
+                        if (response.equals("true")) {
+
+                            sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+                            editor = sharedPreferences.edit();
+                            editor.putString("email", emailLogin);
+                            editor.putString("password", passLogin);
+                            editor.apply();
+
+                            startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                            finish();
+                        }
+
+                        else if(response.equals("auth")) {
+
+                            pbLogin.setVisibility(View.INVISIBLE);
+                            btLogin.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, "Please verify email address", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        else {
+                            pbLogin.setVisibility(View.INVISIBLE);
+                            btLogin.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, "Invalid email address or password", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pbLogin.setVisibility(View.INVISIBLE);
+                btLogin.setVisibility(View.VISIBLE);
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("email", emailLogin);
+                params.put("password", passLogin);
+                return params;
+            }
+        });
+    }
 
 }

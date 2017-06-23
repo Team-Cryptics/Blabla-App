@@ -13,12 +13,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@android:style/Holo.Light.ButtonBar">
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Activities.YoutubeActivity" />
         <activity
             android:name=".Activities.CategorySelectionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
-        <activity android:name=".Activities.TabbedActivity" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".SpecInfo"
+            android:parentActivityName=".Activities.HomeActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.TabbedActivity"
+
+            />
         <activity
             android:name=".Activities.WebViewActivity"
             android:parentActivityName=".Activities.TabbedActivity"
@@ -32,7 +42,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ForgetPassActivity"></activity>
+        <activity android:name=".Activities.ForgetPassActivity" />
+        <activity android:name=".Activities.TimeSelectionActivity"></activity>
     </application>
 
 </manifest>

@@ -12,9 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,8 @@ public class CategorySelectionActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     CategoryAdapter adapter;
     FloatingActionButton fab_proceed;
+    int i;
+    String categoryURl = "?q={%22filters%22:[";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_category);
         fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
-        ArrayList<CategoriesClass> list = new ArrayList<>();
+        final ArrayList<CategoriesClass> list = new ArrayList<>();
 
         for(int i =0 ; i<20;i++){
             CategoriesClass obj = new CategoriesClass();
@@ -53,6 +58,18 @@ public class CategorySelectionActivity extends AppCompatActivity {
         fab_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                for( i =0;i<list.size();i++){
+                    if(list.get(i).getClicked()){
+
+                        categoryURl += "{%22name%22:%22category%22,%22op%22:%22eq%22,%22val%22:%22"+list.get(i).getCategoryName()+"%22},";
+
+                    }
+                }
+
+                categoryURl+="]}";
+                Log.i("TAG",categoryURl);
+
                 startActivity(new Intent(CategorySelectionActivity.this,TabbedActivity.class));
                 finish();
             }
@@ -80,6 +97,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(CategoryAdapter.CategoryHolder holder, int position) {
             Picasso.with(c).load(list.get(position).getCategoryImageURL()).into(holder.iv_category);
+            holder.tv_title.setText(list.get(position).getCategoryName());
         }
 
         @Override
@@ -91,12 +109,14 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
 
             ImageView iv_category, iv_click;
+            TextView tv_title;
             List<CategoriesClass> list;
 
             public CategoryHolder(View itemView, List<CategoriesClass> listForHolder) {
                 super(itemView);
                 iv_category = (ImageView) itemView.findViewById(R.id.imageView_options);
                 iv_click = (ImageView) itemView.findViewById(R.id.imageView_click_options);
+                tv_title = (TextView) itemView.findViewById(R.id.textView_category_title);
                 list = listForHolder;
                 iv_category.setOnClickListener(this);
                 iv_click.setOnClickListener(this);
