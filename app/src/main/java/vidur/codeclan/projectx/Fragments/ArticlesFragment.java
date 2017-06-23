@@ -36,6 +36,7 @@ public class ArticlesFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     Post post;
 
+    String Article_URL = "http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22type%22,%22op%22:%22eq%22,%22val%22:%22ARTICLE%22}]}";
 
     @Nullable
     @Override
@@ -45,7 +46,7 @@ public class ArticlesFragment extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_articles);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET, " ", new Response.Listener<String>() {
+        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET,Article_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

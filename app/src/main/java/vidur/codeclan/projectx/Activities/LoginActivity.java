@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btLogin, btRegister;
     EditText etEmailLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
     String emailLogin, emailReg, passLogin, passReg, passRegConfirm, nickname;
+    ProgressBar pbLogin, pbRegister;
 
 
     @Override
@@ -63,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etNick = (EditText) findViewById(R.id.et_nickname_reg);
         etPassConfirm = (EditText) findViewById(R.id.et_confirmPassword_reg);
         tvForgetPassword = (TextView) findViewById(R.id.tv_forgetPassword);
+        pbLogin = (ProgressBar) findViewById(R.id.progress_login);
+        pbRegister = (ProgressBar) findViewById(R.id.progress_register);
 
 
         tvLogin.setOnClickListener(this);
@@ -99,6 +103,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 emailLogin = etEmailLogin.getText().toString().trim();
                 passLogin = etPassLogin.getText().toString().trim();
 
+                pbLogin.setVisibility(View.VISIBLE);
+                btLogin.setVisibility(View.INVISIBLE);
 
 
                         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
@@ -106,10 +112,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     @Override
                                     public void onResponse(String response) {
                                         Log.d("TAG", "onResponse: " + response);
+
+
                                     }
                                 }, new com.android.volley.Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                pbLogin.setVisibility(View.INVISIBLE);
+                                btLogin.setVisibility(View.VISIBLE);
 
                             }
                         }) {
