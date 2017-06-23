@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import vidur.codeclan.projectx.Activities.WebViewActivity;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
+import vidur.codeclan.projectx.POJO.Object;
+import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 
 /**
@@ -24,11 +25,10 @@ import vidur.codeclan.projectx.R;
 
 public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.InfoViewHolder> {
 
-    ArrayList<ArticleInfoClass> info = new ArrayList<ArticleInfoClass>();
+    Post info = new Post();
     Context c;
-    //Context ctx;
 
-    public ArticleInfoAdapter(ArrayList<ArticleInfoClass> info, Context ctx){
+    public ArticleInfoAdapter(Post info, Context ctx) {
 
         this.info = info;
         this.c = ctx;
@@ -36,8 +36,8 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
 
     @Override
     public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_article_cardview,parent,false);
-        InfoViewHolder infoViewHolder = new InfoViewHolder(view,info,c);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_article_cardview, parent, false);
+        InfoViewHolder infoViewHolder = new InfoViewHolder(view, info, c);
 
         return infoViewHolder;
     }
@@ -45,49 +45,47 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        ArticleInfoClass data = info.get(position);
-        Picasso.with(c).load(data.getImage_id()).into(holder.image_id);
-        holder.heading.setText(data.getHeading());
-        holder.subheading.setText(data.getSubheading());
-
-
-}
+        List<Object> objects = info.getObjects();
+        Picasso.with(c).load(objects.get(position).getImage()).into(holder.image_id);
+        holder.heading.setText(objects.get(position).getTitle());
+        holder.subheading.setText(objects.get(position).getBody());
+    }
 
     @Override
     public int getItemCount() {
-        return info.size();
+        return info.getObjects().size();
     }
 
-public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    ImageView image_id;
-    TextView heading, subheading;
-    ArrayList<ArticleInfoClass> infoForHolder = new ArrayList<ArticleInfoClass>();
-    Context ctx;
+        ImageView image_id;
+        TextView heading, subheading;
+        Post postsHolder;
+        Context ctx;
 
-    public InfoViewHolder(View view, ArrayList<ArticleInfoClass> info, Context c) {
-        super(view);
-        infoForHolder=info;
-        ctx=c;
-        view.setOnClickListener(this);
-        image_id = (ImageView)view.findViewById(R.id.imageView);
-        heading = (TextView) view.findViewById(R.id.textView);
-        subheading = (TextView) view.findViewById(R.id.textView1);
+        public InfoViewHolder(View view, Post info, Context c) {
+            super(view);
+            ctx = c;
+            postsHolder = info;
+            view.setOnClickListener(this);
+            image_id = (ImageView) view.findViewById(R.id.imageView);
+            heading = (TextView) view.findViewById(R.id.textView);
+            subheading = (TextView) view.findViewById(R.id.textView1);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            int position = getAdapterPosition();
+            Log.i("TAG", "Yo " + v.getId() + " Position" + position);
+
+            Intent intent = new Intent(ctx, WebViewActivity.class);
+            intent.putExtra("url", postsHolder.getObjects().get(position).getLink());
+            this.ctx.startActivity(intent);
+
+        }
     }
-
-    @Override
-    public void onClick(View v) {
-
-        int position = getAdapterPosition();
-        Log.i("TAG","Yo "+v.getId()+" Position" + position);
-        ArticleInfoClass infoClass = this.infoForHolder.get(position);
-        Intent intent = new Intent(ctx, WebViewActivity.class);
-        intent.putExtra("url", infoClass.getUrl());
-        this.ctx.startActivity(intent);
-
-    }
-}
 
 
 }

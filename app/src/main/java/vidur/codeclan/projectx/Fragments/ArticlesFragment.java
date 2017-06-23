@@ -9,10 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
 import vidur.codeclan.projectx.POJO.ArticleInfoClass;
+import vidur.codeclan.projectx.POJO.Object;
+import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 
 /**
@@ -22,9 +32,9 @@ import vidur.codeclan.projectx.R;
 public class ArticlesFragment extends Fragment {
 
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    ArticleInfoAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<ArticleInfoClass> list = new ArrayList<ArticleInfoClass>();
+    Post post;
 
 
     @Nullable
@@ -32,19 +42,29 @@ public class ArticlesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_articles,container,false);
-
-        ArticleInfoClass info = new ArticleInfoClass("https://image.freepik.com/free-vector/white-squares-on-colorful-squares-background_23-2147500535.jpg","Abc cde","asd hjk","https://en.wikipedia.org/wiki/Acoustic_wave_equation");
-
-        for(int i =0;i<10;i++){
-            list.add(i,info);
-        }
-
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_articles);
         layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        adapter = new ArticleInfoAdapter(list, getActivity());
-        recyclerView.setAdapter(adapter);
+
+        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET, " ", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                post = new GsonBuilder().create().fromJson(response,Post.class);
+
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setHasFixedSize(true);
+                adapter = new ArticleInfoAdapter(post, getActivity());
+                recyclerView.setAdapter(adapter);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
+
+
 
 
         return view;
