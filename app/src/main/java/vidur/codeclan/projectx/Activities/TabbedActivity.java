@@ -4,22 +4,13 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
-
-import static vidur.codeclan.projectx.POJO.GlobalAccess.URL_POST;
 
 
 public class TabbedActivity extends FragmentActivity implements android.app.ActionBar.TabListener {
@@ -83,7 +74,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home, menu);
+        inflater.inflate(R.menu.tabbed_activity_menu, menu);
         return true;
 
     }
