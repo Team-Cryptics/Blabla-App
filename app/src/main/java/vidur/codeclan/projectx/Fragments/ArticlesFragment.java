@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -34,6 +35,7 @@ public class ArticlesFragment extends Fragment {
     RecyclerView recyclerView;
     ArticleInfoAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ProgressBar progressBar;
     Post post;
 
     String Article_URL = "http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22type%22,%22op%22:%22eq%22,%22val%22:%22ARTICLE%22}]}";
@@ -45,13 +47,15 @@ public class ArticlesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_articles,container,false);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_articles);
         layoutManager = new LinearLayoutManager(getActivity());
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_articles);
 
+        progressBar.setVisibility(View.VISIBLE);
         Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET,Article_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 post = new GsonBuilder().create().fromJson(response,Post.class);
-
+                progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
                 adapter = new ArticleInfoAdapter(post, getActivity());

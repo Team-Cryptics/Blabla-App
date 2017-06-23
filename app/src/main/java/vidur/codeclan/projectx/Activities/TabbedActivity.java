@@ -33,7 +33,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchPosts();
+        //fetchPosts();
 
         setContentView(R.layout.activity_tabbed);
 
@@ -124,19 +124,20 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
 
 //    http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22email%22,%22op%22:%22eq%22,%22val%22:%22aditya03011997@gmail.com%22}]}
 
-    public void fetchPosts() {
-        Volley.newRequestQueue(this).add(new StringRequest(URL_POST,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                      //  currPosts = new GsonBuilder().create().fromJson(response, Posts.class);
-                        Log.d(TAG, "onResponse: " + response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(TabbedActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }));
-    }
+//    public void fetchPosts() {
+//        Volley.newRequestQueue(this).add(new StringRequest(URL_POST,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                      //  currPosts = new GsonBuilder().create().fromJson(response, Posts.class);
+//                        Log.d(TAG, "onResponse: " + response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(TabbedActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        }));
+//    }
+
 }

@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter = new ArticleInfoAdapter(list, this);
+//        adapter = new ArticleInfoAdapter(list, this);
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_goto_podlist);
