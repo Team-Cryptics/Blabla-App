@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import vidur.codeclan.projectx.Adapters.PodcastInfoAdapter;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
 import vidur.codeclan.projectx.POJO.PodcastInfoClass;
 import vidur.codeclan.projectx.R;
 

@@ -67,10 +67,11 @@ public class CategorySelectionActivity extends AppCompatActivity {
                     }
                 }
 
-                categoryURl+="]}";
-                Log.i("TAG",categoryURl);
+                String cat = categoryURl.substring(0,categoryURl.length()-1);
+                cat+="]}";
+                Log.i("TAG",cat);
 
-                startActivity(new Intent(CategorySelectionActivity.this,TabbedActivity.class));
+                startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
                 finish();
             }
         });

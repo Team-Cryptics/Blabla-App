@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
 import vidur.codeclan.projectx.POJO.Object;
 import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;

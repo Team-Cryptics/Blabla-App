@@ -82,6 +82,7 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
 
             Intent intent = new Intent(ctx, WebViewActivity.class);
             intent.putExtra("url", postsHolder.getObjects().get(position).getLink());
+            intent.putExtra("postID",postsHolder.getObjects().get(position).getId());
             this.ctx.startActivity(intent);
 
         }
