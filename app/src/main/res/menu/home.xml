@@ -3,17 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_bookmarks"
-            android:title="Book Marks" />
+            android:id="@+id/Profile"
+            android:title="Profiles" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/Settings"
             android:title="Settings" />
         <item
-            android:id="@+id/nav_aboutus"
-            android:title="About Us" />
+            android:id="@+id/About"
+            android:title="About" />
         <item
-            android:id="@+id/nav_feedback"
-            android:title="Feedback" />
+            android:id="@+id/Signout"
+            android:title="Sign Out" />
     </group>
 
 </menu>

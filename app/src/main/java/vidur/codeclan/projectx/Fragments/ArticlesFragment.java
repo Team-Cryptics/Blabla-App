@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -32,6 +34,7 @@ import vidur.codeclan.projectx.R;
 
 public class ArticlesFragment extends Fragment {
 
+    private static final String TAG = "tag";
     RecyclerView recyclerView;
     ArticleInfoAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -39,6 +42,7 @@ public class ArticlesFragment extends Fragment {
     Post post;
 
     String Article_URL = "http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22type%22,%22op%22:%22eq%22,%22val%22:%22ARTICLE%22}]}";
+    String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post";
 
     @Nullable
     @Override
@@ -50,10 +54,10 @@ public class ArticlesFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progress_articles);
 
         progressBar.setVisibility(View.VISIBLE);
-        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET,Article_URL, new Response.Listener<String>() {
+        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Log.d(TAG, "onResponse: ");
                 post = new GsonBuilder().create().fromJson(response,Post.class);
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setLayoutManager(layoutManager);
@@ -65,9 +69,24 @@ public class ArticlesFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onResponse: error");
+            }
+        })).setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 0;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 0;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
 
             }
-        }));
+        });
 
 
 

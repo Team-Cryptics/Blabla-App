@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -91,16 +92,19 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
 
-            case R.id.nav_bookmarks :
+            case R.id.Profile :
                 break;
 
-            case R.id.nav_settings:
+            case R.id.Signout:
+                getSharedPreferences("User", MODE_PRIVATE).edit().remove("email").remove("password").apply();
+                startActivity(new Intent(TabbedActivity.this, LoginActivity.class));
+                finish();
                 break;
 
-            case R.id.nav_feedback:
+            case R.id.About:
                 break;
 
-            case R.id.nav_aboutus:
+            case R.id.Settings:
                 break;
         }
 
