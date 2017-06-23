@@ -84,6 +84,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
         switch (item.getItemId()){
 
             case R.id.Profile :
+               // startActivity(new Intent(TabbedActivity.this,P));
                 break;
 
             case R.id.Signout:
