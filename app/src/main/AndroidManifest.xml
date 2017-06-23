@@ -21,7 +21,7 @@
         <activity android:name=".Activities.YoutubeActivity" />
         <activity
             android:name=".Activities.CategorySelectionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".SpecInfo"
             android:parentActivityName=".Activities.HomeActivity"
@@ -30,17 +30,18 @@
         <activity
             android:name=".Activities.WebViewActivity"
             android:parentActivityName=".Activities.TabbedActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-        <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".Activities.ForgetPassActivity"></activity>
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+
+        <activity android:name=".Activities.ForgetPassActivity" />
     </application>
 
 </manifest>
