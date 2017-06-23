@@ -1,16 +1,32 @@
 package vidur.codeclan.projectx.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.http.POST;
 import vidur.codeclan.projectx.R;
 
 
@@ -19,6 +35,9 @@ public class WebViewActivity extends AppCompatActivity {
 
     WebView web;
     private ProgressDialog progress;
+    Integer postID;
+    SharedPreferences sharedPreferences;
+    String userEmail;
 
 
     @Override
@@ -26,13 +45,17 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_web);
         web = (WebView) findViewById(R.id.webview);
+
+        sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email",null);
+
         progress=new ProgressDialog(this);
         progress.setMessage("Loading ...");
-        //progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progress.setIndeterminate(true);
-      //  progress.setProgress(0);
+
         progress.show();
         String url = getIntent().getStringExtra("url");
+        postID = getIntent().getIntExtra("postID",-1);
 
         web.setWebViewClient(new myWebClient());
         web.getSettings().setJavaScriptEnabled(true);
@@ -59,7 +82,6 @@ public class WebViewActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
 
             view.loadUrl(url);
-            Log.i("TAG", "onoverride");
             progress.dismiss();
 
             return true;
@@ -67,7 +89,6 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
-    // To handle "Back" key press event for WebView to go back to previous screen.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -77,5 +98,38 @@ public class WebViewActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.webview_activity_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_bookmark :
+
+                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, " ", new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }));
+
+
+                break;
+
+            case R.id.action_share :
+                break;
+        }
+
+        return true;
     }
 }

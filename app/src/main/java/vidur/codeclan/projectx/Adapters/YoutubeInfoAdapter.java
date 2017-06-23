@@ -1,9 +1,7 @@
 package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import vidur.codeclan.projectx.Activities.WebViewActivity;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
-import vidur.codeclan.projectx.POJO.Object;
 import vidur.codeclan.projectx.POJO.Post;
-import vidur.codeclan.projectx.POJO.YoutubeInfoClass;
 import vidur.codeclan.projectx.R;
 
 /**
@@ -82,7 +73,6 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
 
 //            int position = getAdapterPosition();
 //            Log.i("TAG", "Yo " + v.getId() + " Position" + position);
-//            ArticleInfoClass infoClass = this.infoForHolder.get(position);
 //            Intent intent = new Intent(ctx, WebViewActivity.class);
 //            intent.putExtra("url", infoClass.getUrl());
 //            this.ctx.startActivity(intent);

@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import vidur.codeclan.projectx.POJO.CategoriesClass;
 import vidur.codeclan.projectx.R;
 
 
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (response.equals("true")) {
 
                                 progressDialog.dismiss();
-                                startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                                startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
                             }
 
@@ -256,7 +257,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("password", passLogin);
                             editor.apply();
 
-                            startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                            startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                             finish();
                         }
 
