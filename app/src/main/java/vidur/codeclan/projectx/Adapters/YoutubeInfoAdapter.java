@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vidur.codeclan.projectx.Activities.WebViewActivity;
 import vidur.codeclan.projectx.POJO.ArticleInfoClass;
+import vidur.codeclan.projectx.POJO.Object;
+import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.POJO.YoutubeInfoClass;
 import vidur.codeclan.projectx.R;
 
@@ -25,10 +28,10 @@ import vidur.codeclan.projectx.R;
 
 public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.InfoViewHolder> {
 
-    ArrayList<YoutubeInfoClass> info;
+    Post info = new Post();
     Context c;
 
-    public YoutubeInfoAdapter(ArrayList<YoutubeInfoClass> info, Context ctx) {
+    public YoutubeInfoAdapter(Post info, Context ctx) {
 
         this.info = info;
         this.c = ctx;
@@ -45,23 +48,23 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        Picasso.with(c).load(info.get(position).getImage_id()).into(holder.image_id);
-        holder.heading.setText(info.get(position).getHeading());
- }
+        Picasso.with(c).load(info.getObjects().get(position).getImage());
+        holder.heading.setText(info.getObjects().get(position).getTitle());
+    }
 
     @Override
     public int getItemCount() {
-        return info.size();
+        return info.getObjects().size();
     }
 
     public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView image_id;
         TextView heading ;
-        ArrayList<YoutubeInfoClass> infoForHolder;
+        Post infoForHolder;
         Context ctx;
 
-        public InfoViewHolder(View view, ArrayList<YoutubeInfoClass> info, Context c) {
+        public InfoViewHolder(View view, Post info, Context c) {
             super(view);
             infoForHolder = info;
             ctx = c;
@@ -85,3 +88,18 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
