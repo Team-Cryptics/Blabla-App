@@ -13,20 +13,22 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import vidur.codeclan.projectx.DataInterface;
+import retrofit2.http.PUT;
 import vidur.codeclan.projectx.POJO.LoginInfo;
 import vidur.codeclan.projectx.R;
 
@@ -40,21 +42,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText etEmailLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
     String emailLogin, emailReg, passLogin, passReg, passRegConfirm, nickname;
 
-    Retrofit.Builder builder;
-    Retrofit retrofit;
-    DataInterface client;
-
-    String BASE_URL = "http://192.168.0.15/blabla/login.php/";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        builder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
-        client = retrofit.create(DataInterface.class);
 
         tvLogin = (TextView) findViewById(R.id.tv_login);
         tvRegister = (TextView) findViewById(R.id.tv_register);
@@ -78,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btLogin.setOnClickListener(this);
         btRegister.setOnClickListener(this);
         tvForgetPassword.setOnClickListener(this);
+
 
     }
 
@@ -107,26 +100,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 passLogin = etPassLogin.getText().toString().trim();
 
 
-                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
-                        new com.android.volley.Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("TAG", "onResponse: " + response);
-                            }
-                        }, new com.android.volley.Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
 
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> params = new HashMap<>();
-                        params.put("email", emailLogin);
-                        params.put("password", passLogin);
-                        return params;
-                    }
-                });
+                        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
+                                new com.android.volley.Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("TAG", "onResponse: " + response);
+                                    }
+                                }, new com.android.volley.Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                HashMap<String, String> params = new HashMap<>();
+                                params.put("email", emailLogin);
+                                params.put("password", passLogin);
+                                return params;
+                            }
+                        });
 
                 break;
 
