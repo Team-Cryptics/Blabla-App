@@ -48,7 +48,7 @@ public class SpecInfo extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.article_view_menu, menu);
+        inflater.inflate(R.menu.webview_activity_menu, menu);
         return true;
     }
 
