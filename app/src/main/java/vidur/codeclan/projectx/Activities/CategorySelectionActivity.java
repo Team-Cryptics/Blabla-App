@@ -42,12 +42,13 @@ public class CategorySelectionActivity extends AppCompatActivity {
         fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
         final ArrayList<CategoriesClass> list = new ArrayList<>();
 
-        for(int i =0 ; i<20;i++){
-            CategoriesClass obj = new CategoriesClass();
-            obj.setCategoryName("Music");
-            obj.setCategoryImageURL("https://yt3.ggpht.com/0v8T0CTAv8VPxA5lJtz-tqJe-tR-3VQc0ONhD6Az2RWjNRnwh5QQzPYz5I7wbYljU_tQjZ2ok2W59_v_=s900-nd-c-c0xffffffff-rj-k-no");
-            list.add(obj);
-        }
+        list.add(new CategoriesClass("Business & Finance","http://meghancurrie.ca/wp-content/uploads/2015/09/Finance1.jpg"));
+        list.add(new CategoriesClass("Technology","https://www.siliconfeed.com/wp-content/uploads/2017/04/20161028-technology-top-image.jpg"));
+        list.add(new CategoriesClass("Data Structures & Algorithms","https://cdn3.iconfinder.com/data/icons/abstract-1/512/algorithm-256.png"));
+        list.add(new CategoriesClass("Life Hacks","https://cdn1.12stone.com/wp-content/uploads/2014/10/Life-Hacks.jpg"));
+        list.add(new CategoriesClass("Machine Learning & AI","https://cdn2.techworld.com/cmsdata/features/3623340/deeplearning_neuralnetworks_AI_thumb800.jpg"));
+        list.add(new CategoriesClass("Soft skills","https://mediacm.blob.core.windows.net/media/2016/08/soft-skills.jpg"));
+
 
         adapter = new CategoryAdapter(list,this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);

@@ -3,6 +3,7 @@ package vidur.codeclan.projectx.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +18,7 @@ public class TimeSelectionActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_time_selection);
 
         String category = getSharedPreferences("User", MODE_PRIVATE).getString("category", null);
+        Log.e("TAG",category);
 
         btn5 = (Button) findViewById(R.id.bt_five);
         btn15 = (Button) findViewById(R.id.bt_fifteen);
