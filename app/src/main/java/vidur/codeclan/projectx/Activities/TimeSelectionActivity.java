@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,11 +8,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
+
+import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 
 public class TimeSelectionActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn5, btn15, btn30;
     String category;
+    public static Post posts;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +58,33 @@ public class TimeSelectionActivity extends AppCompatActivity implements View.OnC
                 break;
         }
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("lol");
+        progressDialog.setMessage("double lol");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         category+="]}";
         String base_url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post";
-        Intent intent = new Intent(TimeSelectionActivity.this,TabbedActivity.class);
-        intent.putExtra("URL",base_url+category);
+        final Intent intent = new Intent(TimeSelectionActivity.this,TabbedActivity.class);
 
-        startActivity(intent);
-        finish();
+        String url = base_url+category;
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("TAG",response);
+                posts = new GsonBuilder().create().fromJson(response, Post.class);
+                progressDialog.cancel();
+                startActivity(intent);
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
+
     }
 }

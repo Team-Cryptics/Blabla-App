@@ -35,7 +35,6 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     TabsPagerAdapter adapter;
     android.app.ActionBar actionBar;
     static String url;
-    public static Post posts;
 
 
     @Override
@@ -82,19 +81,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
             }
         });
 
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
 
-                Log.d("TAG",response);
-                posts = new GsonBuilder().create().fromJson(response,posts.getClass());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }));
 
 
 

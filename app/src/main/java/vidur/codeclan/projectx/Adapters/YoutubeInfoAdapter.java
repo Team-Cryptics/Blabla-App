@@ -2,6 +2,7 @@ package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,8 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        Picasso.with(c).load("http://img.youtube.com/vi/" + info.getObjects().get(position).getLink().split("v=")[1] + "/0.jpg").into(holder.image_id);
+        Picasso.with(c).load(info.getObjects().get(position).getImage()).into(holder.image_id);
+        Log.d("TAG", "onBindViewHolder: " + "http://img.youtube.com/vi/" + info.getObjects().get(position).getLink().split("v=")[1] + "/0.jpg");
         holder.heading.setText(info.getObjects().get(position).getTitle());
 //        Picasso.with(c).load("http://img.youtube.com/vi/" + "MKk1u5RMTn4" + "/0.jpg").into(holder.image_id);
 //        holder.heading.setText("Poets of the Fall - Carnival of Rust (Official Video)");

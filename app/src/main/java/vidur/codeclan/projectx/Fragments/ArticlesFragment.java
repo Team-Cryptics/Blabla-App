@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vidur.codeclan.projectx.Activities.TabbedActivity;
+import vidur.codeclan.projectx.Activities.TimeSelectionActivity;
 import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
 import vidur.codeclan.projectx.POJO.Object;
 import vidur.codeclan.projectx.POJO.Post;
@@ -38,7 +39,6 @@ public class ArticlesFragment extends Fragment {
     RecyclerView recyclerView;
     ArticleInfoAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ProgressBar progressBar;
 
 
 
@@ -49,14 +49,11 @@ public class ArticlesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_articles,container,false);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_articles);
         layoutManager = new LinearLayoutManager(getActivity());
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_articles);
-
-        progressBar.setVisibility(View.VISIBLE);
 
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter = new ArticleInfoAdapter(TabbedActivity.posts, getActivity());
+        adapter = new ArticleInfoAdapter(TimeSelectionActivity.posts, getActivity());
         recyclerView.setAdapter(adapter);
 
 
