@@ -22,6 +22,7 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import vidur.codeclan.projectx.Activities.TabbedActivity;
 import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
 import vidur.codeclan.projectx.POJO.Object;
 import vidur.codeclan.projectx.POJO.Post;
@@ -38,10 +39,8 @@ public class ArticlesFragment extends Fragment {
     ArticleInfoAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ProgressBar progressBar;
-    Post post;
 
-    String Article_URL = "http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22type%22,%22op%22:%22eq%22,%22val%22:%22ARTICLE%22}]}";
-    String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post";
+
 
     @Nullable
     @Override
@@ -53,40 +52,12 @@ public class ArticlesFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progress_articles);
 
         progressBar.setVisibility(View.VISIBLE);
-        Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "onResponse: ");
-                post = new GsonBuilder().create().fromJson(response,Post.class);
-                progressBar.setVisibility(View.INVISIBLE);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setHasFixedSize(true);
-                adapter = new ArticleInfoAdapter(post, getActivity());
-                recyclerView.setAdapter(adapter);
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "onResponse: error");
-            }
-        })).setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 0;
-            }
 
-            @Override
-            public int getCurrentRetryCount() {
-                return 0;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
-
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        adapter = new ArticleInfoAdapter(TabbedActivity.posts, getActivity());
+        recyclerView.setAdapter(adapter);
 
 
 

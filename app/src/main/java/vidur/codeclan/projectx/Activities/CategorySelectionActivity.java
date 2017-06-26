@@ -31,7 +31,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
     CategoryAdapter adapter;
     FloatingActionButton fab_proceed;
     int i;
-    String categoryURl = "?q={%22filters%22:[";
+    String categoryURl = "?q={%22filters%22:[{%22or%22:[";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,12 @@ public class CategorySelectionActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_category);
         fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
         final ArrayList<CategoriesClass> list = new ArrayList<>();
+        fab_proceed.setVisibility(View.INVISIBLE);
 
         list.add(new CategoriesClass("Business & Finance","http://meghancurrie.ca/wp-content/uploads/2015/09/Finance1.jpg"));
         list.add(new CategoriesClass("Technology","https://www.siliconfeed.com/wp-content/uploads/2017/04/20161028-technology-top-image.jpg"));
         list.add(new CategoriesClass("Data Structures & Algorithms","https://cdn3.iconfinder.com/data/icons/abstract-1/512/algorithm-256.png"));
-        list.add(new CategoriesClass("Life Hacks","https://cdn1.12stone.com/wp-content/uploads/2014/10/Life-Hacks.jpg"));
+        list.add(new CategoriesClass("Lifehacks","https://cdn1.12stone.com/wp-content/uploads/2014/10/Life-Hacks.jpg"));
         list.add(new CategoriesClass("Machine Learning & AI","https://cdn2.techworld.com/cmsdata/features/3623340/deeplearning_neuralnetworks_AI_thumb800.jpg"));
         list.add(new CategoriesClass("Soft skills","https://mediacm.blob.core.windows.net/media/2016/08/soft-skills.jpg"));
 
@@ -63,10 +64,17 @@ public class CategorySelectionActivity extends AppCompatActivity {
                 for( i =0;i<list.size();i++){
                     if(list.get(i).getClicked()){
 
-                        categoryURl += "{%22name%22:%22category%22,%22op%22:%22eq%22,%22val%22:%22"+list.get(i).getCategoryName()+"%22},";
+                        categoryURl += "{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22"+list.get(i).getCategoryName()+"%22},";
 
                     }
                 }
+
+                categoryURl = categoryURl.substring(0,categoryURl.length()-1);
+                categoryURl+="]},";
+
+
+
+               // ?q={"filters":[{"or":[{"name":"types","op":"eq","val":"Lifehacks"},{"name":"types","op":"eq","val":"Technology"}]},{"name":"category","op":"eq","val":"5 20Minutes"}]}
 
                 getSharedPreferences("User", MODE_PRIVATE).edit().putString("category", categoryURl).apply();
                 startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
@@ -76,11 +84,14 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
     }
 
+    //http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post
+    // ?q={%22filters%22:[{%22or%22:[{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22Lifehacks%22},{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22Technology%22}]},{%22name%22:%22category%22,%22op%22:%22eq%22,%22val%22:%2215%20Minutes%22}]}
 
     private class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder> {
 
         List<CategoriesClass> list;
         Context c;
+        int numClicked=0;
 
         public CategoryAdapter(ArrayList<CategoriesClass> categoryList, Context context) {
             list = categoryList;
@@ -130,15 +141,52 @@ public class CategorySelectionActivity extends AppCompatActivity {
                     list.get(position).setClicked(true);
                     iv_category.setImageAlpha(100);
                     iv_click.setVisibility(View.VISIBLE);
+                    numClicked++;
                 }
 
                 else {
                     list.get(position).setClicked(false);
                     iv_category.setAlpha(255);
                     iv_click.setVisibility(View.INVISIBLE);
+                    numClicked--;
+                }
+
+                if(numClicked>0){
+                    fab_proceed.setVisibility(View.VISIBLE);
+                }
+
+                else {
+                    fab_proceed.setVisibility(View.INVISIBLE);
                 }
             }
         }
     }
 
 }
+
+//// http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{"or":[{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22Business%20&%20Finance%22}]}]}
+//http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22category%22,%22op%22:%22eq%22,%22value%22:%225%20Minutes%22},%22or%22:[{%22name%22:%22types%22,%22op%22:%22eq%22,%22value%22:%22Lifehacks%22},{%22name%22:%22types%22,%22op%22:%22eq%22,%22value%22:%22Business%20&%20Finance%22}]]}
+//?q=
+//        {
+//        "filters":
+//                    [
+//                        {
+//                            "name":"category",
+//                            "op":"eq",
+//                            "value":"5 Minutes"
+//                        },
+//                        "or":
+//                                [
+//                                    {
+//                                        "name":"types",
+//                                        "op":"eq",
+//                                        "value":"Lifehacks"
+//                                    },
+//                                    {
+//                                        "name":"types",
+//                                        "op":"eq",
+//                                        "value":"Business%20&%20Finance"
+//                                    }
+//                                ]
+//                    ]
+//        }

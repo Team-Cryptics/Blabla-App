@@ -5,12 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Object {
 
+
     @SerializedName("body")
     @Expose
     private String body;
     @SerializedName("category")
     @Expose
     private String category;
+    @SerializedName("content_type")
+    @Expose
+    private String contentType;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -32,6 +36,9 @@ public class Object {
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("types")
+    @Expose
+    private String types;
     @SerializedName("user_id")
     @Expose
     private Integer userId;
@@ -50,6 +57,14 @@ public class Object {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public Integer getId() {
@@ -108,6 +123,14 @@ public class Object {
         this.title = title;
     }
 
+    public String getTypes() {
+        return types;
+    }
+
+    public void setTypes(String types) {
+        this.types = types;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -117,3 +140,4 @@ public class Object {
     }
 
 }
+

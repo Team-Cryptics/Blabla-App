@@ -4,11 +4,26 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.http.GET;
+import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
 
@@ -19,7 +34,8 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     ViewPager viewPager;
     TabsPagerAdapter adapter;
     android.app.ActionBar actionBar;
-
+    static String url;
+    public static Post posts;
 
 
     @Override
@@ -27,6 +43,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
         super.onCreate(savedInstanceState);
         //fetchPosts();
 
+        url = getIntent().getStringExtra("URL");
         setContentView(R.layout.activity_tabbed);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -64,6 +81,20 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
 
             }
         });
+
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("TAG",response);
+                posts = new GsonBuilder().create().fromJson(response,posts.getClass());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
 
 
 
@@ -119,6 +150,9 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
     }
 
 //    http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22email%22,%22op%22:%22eq%22,%22val%22:%22aditya03011997@gmail.com%22}]}
+
+
+
 
 //    public void fetchPosts() {
 //        Volley.newRequestQueue(this).add(new StringRequest(URL_POST,
