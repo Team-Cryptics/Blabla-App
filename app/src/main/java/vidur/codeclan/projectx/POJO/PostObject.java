@@ -3,7 +3,7 @@ package vidur.codeclan.projectx.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Object {
+public class PostObject {
 
 
     @SerializedName("body")

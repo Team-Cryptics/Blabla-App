@@ -40,16 +40,16 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        Picasso.with(c).load(info.getObjects().get(position).getImage()).into(holder.image_id);
-        Log.d("TAG", "onBindViewHolder: " + "http://img.youtube.com/vi/" + info.getObjects().get(position).getLink().split("v=")[1] + "/0.jpg");
-        holder.heading.setText(info.getObjects().get(position).getTitle());
+        Picasso.with(c).load(info.getPostObjects().get(position).getImage()).into(holder.image_id);
+        Log.d("TAG", "onBindViewHolder: " + "http://img.youtube.com/vi/" + info.getPostObjects().get(position).getLink().split("v=")[1] + "/0.jpg");
+        holder.heading.setText(info.getPostObjects().get(position).getTitle());
 //        Picasso.with(c).load("http://img.youtube.com/vi/" + "MKk1u5RMTn4" + "/0.jpg").into(holder.image_id);
 //        holder.heading.setText("Poets of the Fall - Carnival of Rust (Official Video)");
     }
 
     @Override
     public int getItemCount() {
-        return info.getObjects().size();
+        return info.getPostObjects().size();
     }
 
     public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
