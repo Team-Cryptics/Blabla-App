@@ -14,7 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -38,6 +41,7 @@ public class WebViewActivity extends AppCompatActivity {
     Integer postID;
     SharedPreferences sharedPreferences;
     String userEmail;
+    ImageButton ibFav;
 
 
     @Override
@@ -45,6 +49,25 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_web);
         web = (WebView) findViewById(R.id.webview);
+        ibFav = (ImageButton) findViewById(R.id.ibFav);
+        ibFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Volley.newRequestQueue(WebViewActivity.this).add(new StringRequest(Request.Method.POST,
+                        "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getObjects().get(0).getId(),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(WebViewActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }));
+            }
+        });
 
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email",null);

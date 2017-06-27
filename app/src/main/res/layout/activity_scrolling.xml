@@ -29,10 +29,12 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/ivUser"
                     android:src="@mipmap/ic_launcher_round"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
                 <TextView
+                    android:id="@+id/tvName"
                     android:text="MY NICKNAME!!!"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:layout_width="wrap_content"
@@ -43,15 +45,16 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_scrolling" />
-
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_menu_preferences"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="end"/>
+        app:layout_anchorGravity="end"
+        app:layout_anchor="@id/app_bar" />
+
+    <include layout="@layout/content_scrolling" />
 
     <LinearLayout
         android:background="@color/colorAccent"
@@ -63,6 +66,7 @@
         app:layout_anchorGravity="bottom">
 
         <TextView
+            android:id="@+id/tvBookmarks"
             android:text="0"
             android:textAppearance="?android:textAppearanceLarge"
             android:layout_marginTop="10dp"
