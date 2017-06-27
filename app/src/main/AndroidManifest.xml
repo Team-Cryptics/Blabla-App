@@ -35,13 +35,6 @@
             android:name=".Activities.ForgetPassActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity android:name=".Activities.TimeSelectionActivity" />
-        <activity android:name=".Activities.PrefeenceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
