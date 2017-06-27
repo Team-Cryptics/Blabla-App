@@ -4,9 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -23,14 +31,22 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.gson.GsonBuilder;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
 import vidur.codeclan.projectx.POJO.CategoriesClass;
 import vidur.codeclan.projectx.POJO.User;
 import vidur.codeclan.projectx.R;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,12 +62,51 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
-
+    LoginButton lg;
+    CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lg = (LoginButton)findViewById(R.id.login_button);
 
+        callbackManager = CallbackManager.Factory.create();
 
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
+
+//        PackageInfo info;
+//        try {
+//            info = getPackageManager().getPackageInfo("vidur.codeclan.projectx", PackageManager.GET_SIGNATURES);
+//            for (Signature signature : info.signatures) {
+//                MessageDigest md;
+//                md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                String something = new String(Base64.encode(md.digest(), 0));
+//                //String something = new String(Base64.encodeBytes(md.digest()));
+//                Log.i("hash key", something);
+//            }
+//        } catch (PackageManager.NameNotFoundException e1) {
+//            Log.e("name not found", e1.toString());
+//        } catch (NoSuchAlgorithmException e) {
+//            Log.e("no such an algorithm", e.toString());
+//        } catch (Exception e) {
+//            Log.e("exception", e.toString());
+//        }
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         final String email = sharedPreferences.getString("email", null);
         final String passwd = sharedPreferences.getString("password", null);
@@ -287,4 +342,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }));
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 }

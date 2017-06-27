@@ -93,6 +93,9 @@
     <string name="title_activity_main">MainActivity</string>
 
 
+    <string name="facebook_app_id">695590873982792</string>
+    <string name="fb_login_protocol_scheme">fb695590873982792</string>
+
     <string name="pref_send_report">Send crash reports</string>
     <string name="pref_send_report_summary">Helps to fix bugs</string>
     <string name="pref_sync_frequency">Sync frequency</string>
