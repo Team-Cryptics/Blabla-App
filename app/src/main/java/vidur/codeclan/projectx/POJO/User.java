@@ -1,17 +1,21 @@
 package vidur.codeclan.projectx.POJO;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Post {
+import java.util.List;
 
+/**
+ * Created by samarthgupta on 27/06/17.
+ */
+
+public class User {
     @SerializedName("num_results")
     @Expose
     private Integer numResults;
-    @SerializedName("postObjects")
+    @SerializedName("objects")
     @Expose
-    private List<PostObject> postObjects = null;
+    private List<UserObject> objects = null;
     @SerializedName("page")
     @Expose
     private Integer page;
@@ -27,12 +31,12 @@ public class Post {
         this.numResults = numResults;
     }
 
-    public List<PostObject> getPostObjects() {
-        return postObjects;
+    public List<UserObject> getObjects() {
+        return objects;
     }
 
-    public void setPostObjects(List<PostObject> postObjects) {
-        this.postObjects = postObjects;
+    public void setObjects(List<UserObject> objects) {
+        this.objects = objects;
     }
 
     public Integer getPage() {
@@ -50,5 +54,4 @@ public class Post {
     public void setTotalPages(Integer totalPages) {
         this.totalPages = totalPages;
     }
-
 }

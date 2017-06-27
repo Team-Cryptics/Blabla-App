@@ -14,14 +14,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Holo.Light.ButtonBar">
-        <activity android:name=".Activities.YoutubeActivity"></activity>
+
+        <activity android:name=".Activities.YoutubeActivity" >
+
+        </activity>
         <activity
             android:name=".Activities.CategorySelectionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".SpecInfo"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.TabbedActivity" />
+        <activity android:name=".Activities.TabbedActivity"
+
+            />
         <activity
             android:name=".Activities.WebViewActivity"
             android:parentActivityName=".Activities.TabbedActivity"
@@ -30,11 +42,15 @@
             android:name=".Activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
+
         </activity>
-        <activity
-            android:name=".Activities.ForgetPassActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog" />
-        <activity android:name=".Activities.TimeSelectionActivity" />
+        <activity android:name=".Activities.ForgetPassActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog"/>
+        <activity android:name=".Activities.ScrollingActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".Activities.TimeSelectionActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            ></activity>
     </application>
 
 </manifest>

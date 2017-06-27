@@ -16,7 +16,9 @@
             <ImageView
                 android:id="@+id/imageView_options"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                />
 
             <ImageView
                 android:id="@+id/imageView_click_options"
@@ -35,11 +37,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Category"
+                android:background="#30000000"
                 android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
                 android:layout_centerVertical="true"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:id="@+id/textView_category_title"
                 />
+
 
 
         </RelativeLayout>

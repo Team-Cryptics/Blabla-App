@@ -10,9 +10,12 @@ public class CategoriesClass {
     String categoryImageURL;
     Boolean isClicked;
 
-    public CategoriesClass() {
+    public CategoriesClass(String categoryName, String categoryImageURL) {
+        this.categoryName = categoryName;
+        this.categoryImageURL = categoryImageURL;
         this.isClicked = false;
     }
+
 
     public String getCategoryName() {
         return categoryName;

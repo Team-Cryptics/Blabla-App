@@ -23,10 +23,13 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import vidur.codeclan.projectx.POJO.CategoriesClass;
+import vidur.codeclan.projectx.POJO.User;
 import vidur.codeclan.projectx.R;
 
 
@@ -68,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (response.equals("true")) {
 
                                 progressDialog.dismiss();
-                                startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                                startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
                             }
 
@@ -120,6 +123,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+    }
+
+    private void getUserData(String emailLogin) {
+
+        String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22nickname%22,%22op%22:%22eq%22,%22val%22:%22"+emailLogin+"%22}]}";
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                User user = new GsonBuilder().create().fromJson(response,User.class);
+                //Use user further.
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
     }
 
 
@@ -183,7 +205,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 pbRegister.setVisibility(View.VISIBLE);
                 btRegister.setVisibility(View.INVISIBLE);
 
-                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/register.php",
+                //PS - emailLogin is actually nickname - since the backend guy said nickname to be used for login
+                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/register/" + emailLogin + "/" + emailReg + "/" + passReg,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -195,42 +218,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     llLogin.setVisibility(View.VISIBLE);
                                     vvLogin.setVisibility(View.VISIBLE);
                                     vvRegister.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(LoginActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+                                    getUserData(emailLogin);
+                                    Toast.makeText(LoginActivity.this, "Registration success. Please Login", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
+
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pbRegister.setVisibility(View.INVISIBLE);
                         btRegister.setVisibility(View.VISIBLE);
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> params = new HashMap<>();
-                        params.put("email", emailReg);
-                        params.put("password", passReg);
-                        params.put("username", nickname);
-                        return params;
-                    }
-                }).setRetryPolicy(new RetryPolicy() {
-                    @Override
-                    public int getCurrentTimeout() {
-                        return 0;
-                    }
-
-                    @Override
-                    public int getCurrentRetryCount() {
-                        return 0;
-                    }
-
-                    @Override
-                    public void retry(VolleyError error) throws VolleyError {
-
-                    }
-                });
+                }));
 
                 break;
 
@@ -243,12 +245,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void login() {
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nickname + "/" + passLogin,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("TAG", "onResponse: " + response);
-                        if (response.equals("true")) {
+                        if (response.equals("True")) {
 
                             sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
                             editor = sharedPreferences.edit();
@@ -256,11 +258,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("password", passLogin);
                             editor.apply();
 
-                            startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                            startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                             finish();
                         }
 
-                        else if(response.equals("auth")) {
+                        else if(response.equals("authi")) {
 
                             pbLogin.setVisibility(View.INVISIBLE);
                             btLogin.setVisibility(View.VISIBLE);
@@ -282,15 +284,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 btLogin.setVisibility(View.VISIBLE);
 
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("email", emailLogin);
-                params.put("password", passLogin);
-                return params;
-            }
-        });
+        }));
     }
 
 }

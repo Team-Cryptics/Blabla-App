@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import vidur.codeclan.projectx.Activities.WebViewActivity;
-import vidur.codeclan.projectx.POJO.Object;
+import vidur.codeclan.projectx.POJO.PostObject;
 import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 
@@ -45,15 +45,15 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        List<Object> objects = info.getObjects();
-        Picasso.with(c).load(objects.get(position).getImage()).into(holder.image_id);
-        holder.heading.setText(objects.get(position).getTitle());
-        holder.subheading.setText(objects.get(position).getBody());
+        List<PostObject> postObjects = info.getPostObjects();
+        Picasso.with(c).load(postObjects.get(position).getImage()).into(holder.image_id);
+        holder.heading.setText(postObjects.get(position).getTitle());
+        holder.subheading.setText(postObjects.get(position).getBody());
     }
 
     @Override
     public int getItemCount() {
-        return info.getObjects().size();
+        return info.getPostObjects().size();
     }
 
     public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -81,7 +81,8 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
             Log.i("TAG", "Yo " + v.getId() + " Position" + position);
 
             Intent intent = new Intent(ctx, WebViewActivity.class);
-            intent.putExtra("url", postsHolder.getObjects().get(position).getLink());
+            intent.putExtra("url", postsHolder.getPostObjects().get(position).getLink());
+            intent.putExtra("postID",postsHolder.getPostObjects().get(position).getId());
             this.ctx.startActivity(intent);
 
         }

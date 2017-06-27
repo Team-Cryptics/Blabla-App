@@ -1,7 +1,6 @@
 package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,14 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import vidur.codeclan.projectx.Activities.WebViewActivity;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
-import vidur.codeclan.projectx.POJO.Object;
 import vidur.codeclan.projectx.POJO.Post;
-import vidur.codeclan.projectx.POJO.YoutubeInfoClass;
 import vidur.codeclan.projectx.R;
 
 /**
@@ -48,15 +40,16 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-//        Picasso.with(c).load("http://img.youtube.com/vi/" + info.getObjects().get(position).getLink().split("v=")[1] + "/0.jpg").into(holder.image_id);
-//        holder.heading.setText(info.getObjects().get(position).getTitle());
-        Picasso.with(c).load("http://img.youtube.com/vi/" + "MKk1u5RMTn4" + "/0.jpg").into(holder.image_id);
-        holder.heading.setText("Poets of the Fall - Carnival of Rust (Official Video)");
+        Picasso.with(c).load(info.getPostObjects().get(position).getImage()).into(holder.image_id);
+        Log.d("TAG", "onBindViewHolder: " + "http://img.youtube.com/vi/" + info.getPostObjects().get(position).getLink().split("v=")[1] + "/0.jpg");
+        holder.heading.setText(info.getPostObjects().get(position).getTitle());
+//        Picasso.with(c).load("http://img.youtube.com/vi/" + "MKk1u5RMTn4" + "/0.jpg").into(holder.image_id);
+//        holder.heading.setText("Poets of the Fall - Carnival of Rust (Official Video)");
     }
 
     @Override
     public int getItemCount() {
-        return info.getObjects().size();
+        return info.getPostObjects().size();
     }
 
     public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,7 +75,6 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
 
 //            int position = getAdapterPosition();
 //            Log.i("TAG", "Yo " + v.getId() + " Position" + position);
-//            ArticleInfoClass infoClass = this.infoForHolder.get(position);
 //            Intent intent = new Intent(ctx, WebViewActivity.class);
 //            intent.putExtra("url", infoClass.getUrl());
 //            this.ctx.startActivity(intent);

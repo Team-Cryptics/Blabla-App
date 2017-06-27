@@ -1,6 +1,5 @@
 package vidur.codeclan.projectx.Activities;
 
-import android.app.DownloadManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +12,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
-
-import vidur.codeclan.projectx.Adapters.ArticleInfoAdapter;
 import vidur.codeclan.projectx.Adapters.YoutubeInfoAdapter;
-import vidur.codeclan.projectx.POJO.ArticleInfoClass;
 import vidur.codeclan.projectx.POJO.Post;
-import vidur.codeclan.projectx.POJO.YoutubeInfoClass;
 import vidur.codeclan.projectx.R;
 
 public class YoutubeListViewer extends AppCompatActivity {
