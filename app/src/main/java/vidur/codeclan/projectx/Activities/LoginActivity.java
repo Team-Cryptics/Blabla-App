@@ -49,7 +49,7 @@ import java.util.Map;
 import vidur.codeclan.projectx.POJO.CategoriesClass;
 import vidur.codeclan.projectx.POJO.User;
 import vidur.codeclan.projectx.R;
-import com.facebook.FacebookSdk;
+
 import com.facebook.appevents.AppEventsLogger;
 import com.squareup.picasso.Picasso;
 
@@ -80,8 +80,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lg = (LoginButton)findViewById(R.id.login_button);
-
-      // lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        //lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
@@ -99,14 +100,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                             String userID = (String) object.get("id");
                                             String userName = (String) object.get("name");
-
-                                           // For Profile Picture
+                                         //   String email = object.getString("email");
+                                            //String birthday = object.getString("birthday");
+                                            // For Profile Picture
                                            //Below
                                            //  Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into();
                                             //Bitmap b = (Bitmap) object.get("picture");
 
                                             Log.i("userid",userID);
                                             Log.i("username", userName);
+                                          //  Log.i("userEmail",email);
+                                           // Log.i("userbirthday", birthday);
                                             Log.i("o/p", "name");
                                         } catch (JSONException e) {
                                             e.printStackTrace();
