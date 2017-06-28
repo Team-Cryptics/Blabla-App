@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -100,8 +101,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             String userName = (String) object.get("name");
 
                                            // For Profile Picture
-
-                                             Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into(imageView);
+                                           //Below
+                                           //  Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into();
                                             //Bitmap b = (Bitmap) object.get("picture");
 
                                             Log.i("userid",userID);
