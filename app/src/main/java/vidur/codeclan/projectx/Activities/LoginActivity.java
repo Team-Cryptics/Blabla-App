@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -31,6 +32,8 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -38,6 +41,7 @@ import com.google.gson.GsonBuilder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +50,12 @@ import vidur.codeclan.projectx.POJO.User;
 import vidur.codeclan.projectx.R;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static vidur.codeclan.projectx.R.id.imageView;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,25 +78,74 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         lg = (LoginButton)findViewById(R.id.login_button);
 
+      //  lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
         callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        AccessToken accessToken = loginResult.getAccessToken();
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                accessToken,
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(
+                                            JSONObject object,
+                                            GraphResponse response) {
+                                        try {
+
+                                            String userID = (String) object.get("id");
+                                            String userName = (String) object.get("name");
+                                           // String email = (String)object.get("email");
+                                           // Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into(imageView);
+                                            //Bitmap b = (Bitmap) object.get("picture");
+                                            // tv = (TextView) findViewById(R.id.textView2);
+                                            // tv.setText("Hello" + " " + userName);
+                                            //Log.i("useremail",email);
+                                            Log.i("userid",userID);
+                                            Log.i("username", userName);
+                                            Log.i("o/p", "name");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "id,name,link,birthday,picture");
+                        request.setParameters(parameters);
+                        request.executeAsync();
                     }
 
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_LONG).show();
-                    }
+            @Override
+            public void onCancel() {
 
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        LoginManager.getInstance().registerCallback(callbackManager,
+//                new FacebookCallback<LoginResult>() {
+//                    @Override
+//                    public void onSuccess(LoginResult loginResult) {
+//                        startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(FacebookException exception) {
+//                        // App code
+//                    }
+//                });
 
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         final String email = sharedPreferences.getString("email", null);
