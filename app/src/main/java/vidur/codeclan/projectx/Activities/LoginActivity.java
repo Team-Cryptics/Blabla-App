@@ -71,6 +71,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
+    public static User globalUser;
+
     LoginButton lg;
     CallbackManager callbackManager;
     @Override
@@ -148,23 +150,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                });
 
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        final String email = sharedPreferences.getString("email", null);
+        final String nick = sharedPreferences.getString("nickname", null);
         final String passwd = sharedPreferences.getString("password", null);
 
         progressDialog = new ProgressDialog(this);
 
-        if (passwd != null && email != null ) {
+        if (passwd != null && nick != null ) {
             progressDialog.setMessage("Please wait");
             progressDialog.show();
 
 
-            Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://192.168.0.15/blabla/login.php",
+            Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passLogin,
                     new com.android.volley.Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.d("TAG",response);
                             if (response.equals("true")) {
-
                                 progressDialog.dismiss();
                                 startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
@@ -176,15 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 public void onErrorResponse(VolleyError error) {
 
                 }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    HashMap<String, String> params = new HashMap<>();
-                    params.put("email", email);
-                    params.put("password", passwd);
-                    return params;
-                }
-            });
+            }));
 
 
         }
@@ -229,6 +222,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 User user = new GsonBuilder().create().fromJson(response,User.class);
                 //Use user further.
+                globalUser = user;
 
             }
         }, new Response.ErrorListener() {
@@ -349,10 +343,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
                             editor = sharedPreferences.edit();
-                            editor.putString("email", emailLogin);
+                            editor.putString("nickname", emailLogin);
                             editor.putString("password", passLogin);
                             editor.apply();
-
+                            getUserData(emailLogin);
                             startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                             finish();
                         }

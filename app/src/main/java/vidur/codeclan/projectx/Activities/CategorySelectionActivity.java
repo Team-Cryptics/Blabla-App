@@ -38,6 +38,11 @@ public class CategorySelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
+        if (getSharedPreferences("User", MODE_PRIVATE).getString("category", null) != null) {
+            startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
+            finish();
+        }
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_category);
         fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
         final ArrayList<CategoriesClass> list = new ArrayList<>();
