@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                             String userID = (String) object.get("id");
                                             String userName = (String) object.get("name");
-                                         //   String email = object.getString("email");
+                                         //String email = object.getString("email");
                                             //String birthday = object.getString("birthday");
                                             // For Profile Picture
                                            //Below
@@ -134,6 +134,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
+//
+//                <com.facebook.login.widget.LoginButton
+//        android:id="@+id/login_button"
+//        android:layout_width="wrap_content"
+//        android:layout_height="wrap_content"
+//        android:layout_gravity="center_horizontal"
+//        android:layout_marginTop="100dp"
+//        android:layout_marginBottom="30dp"
+//        android:layout_marginLeft="100dp"
+//        android:layout_alignParentBottom="true"/>
 //        callbackManager = CallbackManager.Factory.create();
 //
 //        LoginManager.getInstance().registerCallback(callbackManager,
