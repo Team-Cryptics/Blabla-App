@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         lg = (LoginButton)findViewById(R.id.login_button);
 
-       lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
+      // lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
@@ -98,12 +98,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                             String userID = (String) object.get("id");
                                             String userName = (String) object.get("name");
-                                           // String email = (String)object.get("email");
-                                           // Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into(imageView);
+
+                                           // For Profile Picture
+
+                                             Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into(imageView);
                                             //Bitmap b = (Bitmap) object.get("picture");
-                                            // tv = (TextView) findViewById(R.id.textView2);
-                                            // tv.setText("Hello" + " " + userName);
-                                            //Log.i("useremail",email);
+
                                             Log.i("userid",userID);
                                             Log.i("username", userName);
                                             Log.i("o/p", "name");
