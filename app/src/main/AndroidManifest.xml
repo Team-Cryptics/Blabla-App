@@ -16,9 +16,7 @@
         android:theme="@android:style/Holo.Light.ButtonBar">
         <activity android:name=".Activities.YoutubeActivity"></activity>
 
-       <activity android:name=".Activities.YoutubeActivity" >
 
-        </activity>
         <activity
             android:name=".Activities.CategorySelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -52,11 +50,10 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
-        <activity
-            android:name=".Activities.ForgetPassActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog" />
-        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
+               <activity
             android:name=".Activities.ScrollingActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -69,8 +66,7 @@
         </activity>
         <activity android:name=".Activities.ForgetPassActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog"/>
-        <activity android:name=".Activities.ScrollingActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
         <activity
             android:name=".Activities.TimeSelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
