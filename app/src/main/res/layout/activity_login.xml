@@ -95,11 +95,13 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/ll_login"
+        android:visibility="visible">
 
 
         <LinearLayout
-            android:id="@+id/ll_login"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -175,9 +177,10 @@
         android:id="@+id/ll_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.7"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="gone"
+        >
 
 
         <android.support.design.widget.TextInputLayout

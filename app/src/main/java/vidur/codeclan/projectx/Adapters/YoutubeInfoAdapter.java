@@ -31,6 +31,7 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
 
     @Override
     public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_youtube_list_viewer, parent, false);
         InfoViewHolder infoViewHolder = new InfoViewHolder(v, info, c);
 

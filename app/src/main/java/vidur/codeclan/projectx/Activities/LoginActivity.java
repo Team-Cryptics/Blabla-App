@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "lol";
     TextView tvLogin, tvRegister, tvForgetPassword;
     View vvLogin, vvRegister;
-    LinearLayout llLogin, llRegister;
+    LinearLayout llRegister;
+    RelativeLayout llLogin;
     Button btLogin, btRegister;
     EditText etEmailLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
     String emailLogin, emailReg, passLogin, passReg, passRegConfirm, nickname;
@@ -79,61 +81,61 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lg = (LoginButton)findViewById(R.id.login_button);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        //lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
-        callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                        AccessToken accessToken = loginResult.getAccessToken();
-                        GraphRequest request = GraphRequest.newMeRequest(
-                                accessToken,
-                                new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(
-                                            JSONObject object,
-                                            GraphResponse response) {
-                                        try {
-
-                                            String userID = (String) object.get("id");
-                                            String userName = (String) object.get("name");
-                                         //String email = object.getString("email");
-                                            //String birthday = object.getString("birthday");
-                                            // For Profile Picture
-                                           //Below
-                                           //  Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into();
-                                            //Bitmap b = (Bitmap) object.get("picture");
-
-                                            Log.i("userid",userID);
-                                            Log.i("username", userName);
-                                          //  Log.i("userEmail",email);
-                                           // Log.i("userbirthday", birthday);
-                                            Log.i("o/p", "name");
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-                                });
-                        Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,name,link,birthday,picture");
-                        request.setParameters(parameters);
-                        request.executeAsync();
-                    }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
+//        //lg = (LoginButton)findViewById(R.id.login_button);
+//        FacebookSdk.sdkInitialize(this.getApplicationContext());
+//        //lg.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
+//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+//        callbackManager = CallbackManager.Factory.create();
+//        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//                    @Override
+//                    public void onSuccess(LoginResult loginResult) {
+//                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+//                        AccessToken accessToken = loginResult.getAccessToken();
+//                        GraphRequest request = GraphRequest.newMeRequest(
+//                                accessToken,
+//                                new GraphRequest.GraphJSONObjectCallback() {
+//                                    @Override
+//                                    public void onCompleted(
+//                                            JSONObject object,
+//                                            GraphResponse response) {
+//                                        try {
+//
+//                                            String userID = (String) object.get("id");
+//                                            String userName = (String) object.get("name");
+//                                         //String email = object.getString("email");
+//                                            //String birthday = object.getString("birthday");
+//                                            // For Profile Picture
+//                                           //Below
+//                                           //  Picasso.with(LoginActivity.this).load("https://graph.facebook.com/" + userID + "/picture?type=large").into();
+//                                            //Bitmap b = (Bitmap) object.get("picture");
+//
+//                                            Log.i("userid",userID);
+//                                            Log.i("username", userName);
+//                                          //  Log.i("userEmail",email);
+//                                           // Log.i("userbirthday", birthday);
+//                                            Log.i("o/p", "name");
+//                                        } catch (JSONException e) {
+//                                            e.printStackTrace();
+//                                        }
+//
+//                                    }
+//                                });
+//                        Bundle parameters = new Bundle();
+//                        parameters.putString("fields", "id,name,link,birthday,picture");
+//                        request.setParameters(parameters);
+//                        request.executeAsync();
+//                    }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//
+//            }
+//        });
 //
 //                <com.facebook.login.widget.LoginButton
 //        android:id="@+id/login_button"
@@ -204,7 +206,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvRegister = (TextView) findViewById(R.id.tv_register);
         vvLogin = findViewById(R.id.vv_login);
         vvRegister = findViewById(R.id.vv_register);
-        llLogin = (LinearLayout) findViewById(R.id.ll_login);
+        llLogin = (RelativeLayout) findViewById(R.id.ll_login);
         llRegister = (LinearLayout) findViewById(R.id.ll_register);
         btLogin = (Button) findViewById(R.id.bt_login);
         btRegister = (Button) findViewById(R.id.bt_register);
@@ -248,21 +250,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }));
     }
 
-
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.tv_login:
-                llRegister.setVisibility(View.INVISIBLE);
+                llRegister.setVisibility(View.GONE);
                 llLogin.setVisibility(View.VISIBLE);
                 vvLogin.setVisibility(View.VISIBLE);
                 vvRegister.setVisibility(View.INVISIBLE);
+
                 break;
 
             case R.id.tv_register:
-                llLogin.setVisibility(View.INVISIBLE);
+                llLogin.setVisibility(View.GONE);
                 llRegister.setVisibility(View.VISIBLE);
                 vvLogin.setVisibility(View.INVISIBLE);
                 vvRegister.setVisibility(View.VISIBLE);
