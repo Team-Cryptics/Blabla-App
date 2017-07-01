@@ -59,8 +59,8 @@ public class TimeSelectionActivity extends AppCompatActivity implements View.OnC
         }
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("lol");
-        progressDialog.setMessage("double lol");
+        progressDialog.setTitle("Please Wait");
+        progressDialog.setMessage("The data is being processed.");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
@@ -68,12 +68,13 @@ public class TimeSelectionActivity extends AppCompatActivity implements View.OnC
         String base_url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post";
         final Intent intent = new Intent(TimeSelectionActivity.this,TabbedActivity.class);
 
-        String url = base_url+category;
+        final String url = base_url+category;
+        Log.i("TAG", url);
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                Log.d("TAG",response);
+                Log.i("TAG", url);
+                Log.i("TAG",response);
                 posts = new GsonBuilder().create().fromJson(response, Post.class);
                 progressDialog.cancel();
                 startActivity(intent);

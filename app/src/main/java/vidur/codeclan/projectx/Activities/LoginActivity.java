@@ -176,7 +176,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             progressDialog.setMessage("Please wait");
             progressDialog.show();
 
-
+            String check = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passLogin;
+            Log.i("TAG", check);
             Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passLogin,
                     new com.android.volley.Response.Listener<String>() {
                         @Override
@@ -187,6 +188,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
                             }
+                            else if(response.equals("false")){
+                                progressDialog.dismiss();
+
+                            }
 
                         }
                     }, new com.android.volley.Response.ErrorListener() {
@@ -195,7 +200,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             }));
-
 
         }
 
@@ -304,7 +308,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 if (!passReg.equals(passRegConfirm)) {
-                    Toast.makeText(this, "Passwords donot match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -320,14 +324,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 if (response.equals("true")) {
 
-                                    llRegister.setVisibility(View.INVISIBLE);
+                                    llRegister.setVisibility(View.GONE);
                                     llLogin.setVisibility(View.VISIBLE);
                                     vvLogin.setVisibility(View.VISIBLE);
                                     vvRegister.setVisibility(View.INVISIBLE);
                                     getUserData(emailLogin);
                                     Toast.makeText(LoginActivity.this, "Registration success. Please Login", Toast.LENGTH_SHORT).show();
+                                    pbRegister.setVisibility(View.INVISIBLE);
+                                    btRegister.setVisibility(View.VISIBLE);
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                    pbRegister.setVisibility(View.INVISIBLE);
+                                    btRegister.setVisibility(View.VISIBLE);
                                 }
                             }
 
