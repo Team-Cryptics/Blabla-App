@@ -71,7 +71,9 @@
         <activity
             android:name=".Activities.TimeSelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity android:name=".Activities.SettingsActivity">
+
+        </activity>
     </application>
 
 </manifest>

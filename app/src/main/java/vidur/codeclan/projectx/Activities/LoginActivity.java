@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     LoginButton lg;
     CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,23 +173,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
 
-        if (passwd != null && nick != null ) {
+        if (passwd != null && nick != null) {
             progressDialog.setMessage("Please wait");
             progressDialog.show();
 
-            String check = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passLogin;
-            Log.i("TAG", check);
-            Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passLogin,
+            String check = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passwd;
+            Log.i("APP OPEN LOGIN TAG", check);
+            Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nick + "/" + passwd,
                     new com.android.volley.Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.d("TAG",response);
-                            if (response.equals("true")) {
+                            Log.d("TAG", response);
+                            if (response.equals("True")) {
                                 progressDialog.dismiss();
                                 startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
-                            }
-                            else if(response.equals("false")){
+                            } else if (response.equals("False")) {
                                 progressDialog.dismiss();
 
                             }
@@ -231,17 +231,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvForgetPassword.setOnClickListener(this);
 
 
-
     }
 
     private void getUserData(String emailLogin) {
 
-        String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22nickname%22,%22op%22:%22eq%22,%22val%22:%22"+emailLogin+"%22}]}";
+        String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22nickname%22,%22op%22:%22eq%22,%22val%22:%22" + emailLogin + "%22}]}";
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                User user = new GsonBuilder().create().fromJson(response,User.class);
+                User user = new GsonBuilder().create().fromJson(response, User.class);
                 //Use user further.
                 globalUser = user;
 
@@ -320,9 +319,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Log.d("TAG",response);
+                                Log.d("TAG", response);
 
-                                if (response.equals("true")) {
+                                if (response.equals("True")) {
 
                                     llRegister.setVisibility(View.GONE);
                                     llLogin.setVisibility(View.VISIBLE);
@@ -359,7 +358,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void login() {
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nickname + "/" + passLogin,
+        Log.d("LOGIN TAG", "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + emailLogin + "/" + passLogin );
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + emailLogin + "/" + passLogin,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -374,16 +374,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             getUserData(emailLogin);
                             startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                             finish();
-                        }
-
-                        else if(response.equals("authi")) {
+                        } else if (response.equals("authi")) {
 
                             pbLogin.setVisibility(View.INVISIBLE);
                             btLogin.setVisibility(View.VISIBLE);
                             Toast.makeText(LoginActivity.this, "Please verify email address", Toast.LENGTH_LONG).show();
                             return;
-                        }
-                        else {
+                        } else {
                             pbLogin.setVisibility(View.INVISIBLE);
                             btLogin.setVisibility(View.VISIBLE);
                             Toast.makeText(LoginActivity.this, "Invalid email address or password", Toast.LENGTH_SHORT).show();
@@ -400,12 +397,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }));
     }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 }
+////
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//       // callbackManager.onActivityResult(requestCode, resultCode, data);
+//    }
+//}
