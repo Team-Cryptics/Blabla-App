@@ -43,6 +43,8 @@ public class CategorySelectionActivity extends AppCompatActivity {
             finish();
         }
 
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_category);
         fab_proceed = (FloatingActionButton) findViewById(R.id.fab_category_proceed);
         final ArrayList<CategoriesClass> list = new ArrayList<>();
@@ -82,6 +84,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
                // ?q={"filters":[{"or":[{"name":"types","op":"eq","val":"Lifehacks"},{"name":"types","op":"eq","val":"Technology"}]},{"name":"category","op":"eq","val":"5 20Minutes"}]}
 
                 getSharedPreferences("User", MODE_PRIVATE).edit().putString("category", categoryURl).apply();
+
                 startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
                 finish();
             }

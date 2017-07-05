@@ -29,7 +29,7 @@ public class PostObject {
     private String link;
     @SerializedName("sub_category")
     @Expose
-    private java.lang.Object subCategory;
+    private String subCategory;
     @SerializedName("timestamp")
     @Expose
     private String timestamp;
@@ -99,11 +99,11 @@ public class PostObject {
         this.link = link;
     }
 
-    public java.lang.Object getSubCategory() {
+    public String getSubCategory() {
         return subCategory;
     }
 
-    public void setSubCategory(java.lang.Object subCategory) {
+    public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
     }
 

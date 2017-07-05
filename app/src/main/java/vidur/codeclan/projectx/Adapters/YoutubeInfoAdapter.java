@@ -1,6 +1,7 @@
 package vidur.codeclan.projectx.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import vidur.codeclan.projectx.Activities.YoutubeActivity;
 import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 
@@ -42,10 +44,8 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
         Picasso.with(c).load(info.getPostObjects().get(position).getImage()).into(holder.image_id);
-        Log.d("TAG", "onBindViewHolder: " + "http://img.youtube.com/vi/" + info.getPostObjects().get(position).getLink().split("v=")[1] + "/0.jpg");
         holder.heading.setText(info.getPostObjects().get(position).getTitle());
-//        Picasso.with(c).load("http://img.youtube.com/vi/" + "MKk1u5RMTn4" + "/0.jpg").into(holder.image_id);
-//        holder.heading.setText("Poets of the Fall - Carnival of Rust (Official Video)");
+
     }
 
     @Override
@@ -56,7 +56,7 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     public static class InfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView image_id;
-        TextView heading ;
+        TextView heading;
         Post infoForHolder;
         Context ctx;
 
@@ -74,11 +74,10 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
         @Override
         public void onClick(View v) {
 
-//            int position = getAdapterPosition();
-//            Log.i("TAG", "Yo " + v.getId() + " Position" + position);
-//            Intent intent = new Intent(ctx, WebViewActivity.class);
-//            intent.putExtra("url", infoClass.getUrl());
-//            this.ctx.startActivity(intent);
+            int position = getAdapterPosition();
+            Intent intent = new Intent(ctx, YoutubeActivity.class);
+            intent.putExtra("VideoUrl", infoForHolder.getPostObjects().get(position).getLink());
+            this.ctx.startActivity(intent);
 
         }
     }

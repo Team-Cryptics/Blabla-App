@@ -25,13 +25,13 @@ import vidur.codeclan.projectx.R;
 
 public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.InfoViewHolder> {
 
-    Post info = new Post();
+    Post info;
     Context c;
 
     public ArticleInfoAdapter(Post info, Context ctx) {
 
         this.info = info;
-        this.c = ctx;
+        c = ctx;
     }
 
     @Override

@@ -4,60 +4,30 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.gson.GsonBuilder;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import vidur.codeclan.projectx.POJO.CategoriesClass;
 import vidur.codeclan.projectx.POJO.User;
 import vidur.codeclan.projectx.R;
-
-import com.facebook.appevents.AppEventsLogger;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static vidur.codeclan.projectx.R.id.imageView;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -65,11 +35,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "lol";
     TextView tvLogin, tvRegister, tvForgetPassword;
     View vvLogin, vvRegister;
-    LinearLayout llRegister;
-    RelativeLayout llLogin;
+    LinearLayout llRegister,llLogin;
     Button btLogin, btRegister;
-    EditText etEmailLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
-    String emailLogin, emailReg, passLogin, passReg, passRegConfirm, nickname;
+    EditText etNickLogin, etEmailReg, etPassLogin, etPassReg, etNick, etPassConfirm;
+    String nickLogin, emailReg, passLogin, passReg, passRegConfirm, nickReg;
     ProgressBar pbLogin, pbRegister;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -184,11 +153,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onResponse(String response) {
                             Log.d("TAG", response);
-                            if (response.equals("True")) {
+                            if (response.equals("True")||response.equals("true")) {
                                 progressDialog.dismiss();
+                                getUserData(nick);
                                 startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                                 finish();
-                            } else if (response.equals("False")) {
+                            } else if (response.equals("False")||response.equals("false")) {
                                 progressDialog.dismiss();
 
                             }
@@ -210,11 +180,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvRegister = (TextView) findViewById(R.id.tv_register);
         vvLogin = findViewById(R.id.vv_login);
         vvRegister = findViewById(R.id.vv_register);
-        llLogin = (RelativeLayout) findViewById(R.id.ll_login);
+        llLogin = (LinearLayout) findViewById(R.id.ll_login);
         llRegister = (LinearLayout) findViewById(R.id.ll_register);
         btLogin = (Button) findViewById(R.id.bt_login);
         btRegister = (Button) findViewById(R.id.bt_register);
-        etEmailLogin = (EditText) findViewById(R.id.et_email_login);
+        etNickLogin = (EditText) findViewById(R.id.et_nickname_login);
         etEmailReg = (EditText) findViewById(R.id.et_email_reg);
         etPassLogin = (EditText) findViewById(R.id.et_password_login);
         etPassReg = (EditText) findViewById(R.id.et_password_reg);
@@ -233,9 +203,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void getUserData(String emailLogin) {
+    private void getUserData(String nickname) {
 
-        String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22nickname%22,%22op%22:%22eq%22,%22val%22:%22" + emailLogin + "%22}]}";
+        String url = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{%22name%22:%22nickname%22,%22op%22:%22eq%22,%22val%22:%22" + nickname + "%22}]}";
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -259,7 +229,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.tv_login:
-                llRegister.setVisibility(View.GONE);
+                llRegister.setVisibility(View.INVISIBLE);
                 llLogin.setVisibility(View.VISIBLE);
                 vvLogin.setVisibility(View.VISIBLE);
                 vvRegister.setVisibility(View.INVISIBLE);
@@ -267,17 +237,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.tv_register:
-                llLogin.setVisibility(View.GONE);
+                llLogin.setVisibility(View.INVISIBLE);
                 llRegister.setVisibility(View.VISIBLE);
                 vvLogin.setVisibility(View.INVISIBLE);
                 vvRegister.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_login:
                 //User login
-                emailLogin = etEmailLogin.getText().toString().trim();
+                nickLogin = etNickLogin.getText().toString().trim();
                 passLogin = etPassLogin.getText().toString().trim();
 
-                if (TextUtils.isEmpty(emailLogin) || TextUtils.isEmpty(passLogin)) {
+                if (TextUtils.isEmpty(nickLogin) || TextUtils.isEmpty(passLogin)) {
                     Toast.makeText(this, "Please enter valid email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -294,15 +264,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 emailReg = etEmailReg.getText().toString().trim();
                 passReg = etPassReg.getText().toString().trim();
                 passRegConfirm = etPassConfirm.getText().toString().trim();
-                nickname = etNick.getText().toString().trim();
+                nickReg = etNick.getText().toString().trim();
 
                 if (TextUtils.isEmpty(emailReg)) {
                     Toast.makeText(this, "Please enter valid email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(nickname)) {
-                    Toast.makeText(this, "Please enter a valid nickname", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(nickReg)) {
+                    Toast.makeText(this, "Please enter a valid nickReg", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -314,20 +284,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 pbRegister.setVisibility(View.VISIBLE);
                 btRegister.setVisibility(View.INVISIBLE);
 
-                //PS - emailLogin is actually nickname - since the backend guy said nickname to be used for login
-                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/register/" + emailLogin + "/" + emailReg + "/" + passReg,
+                //PS - nickLogin is actually nickReg - since the backend guy said nickReg to be used for login
+                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/register/" + nickReg + "/" + emailReg + "/" + passReg,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Log.d("TAG", response);
 
-                                if (response.equals("True")) {
+                                if (response.equals("true")||response.equals("True")) {
 
                                     llRegister.setVisibility(View.GONE);
                                     llLogin.setVisibility(View.VISIBLE);
                                     vvLogin.setVisibility(View.VISIBLE);
                                     vvRegister.setVisibility(View.INVISIBLE);
-                                    getUserData(emailLogin);
+                                    getUserData(nickLogin);
                                     Toast.makeText(LoginActivity.this, "Registration success. Please Login", Toast.LENGTH_SHORT).show();
                                     pbRegister.setVisibility(View.INVISIBLE);
                                     btRegister.setVisibility(View.VISIBLE);
@@ -358,20 +328,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void login() {
-        Log.d("LOGIN TAG", "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + emailLogin + "/" + passLogin );
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + emailLogin + "/" + passLogin,
+        Log.d("LOGIN TAG", "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nickLogin + "/" + passLogin );
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/auth/" + nickLogin + "/" + passLogin,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("TAG", "onResponse: " + response);
-                        if (response.equals("True")) {
+                        if (response.equals("True")||response.equals("true")) {
 
                             sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
                             editor = sharedPreferences.edit();
-                            editor.putString("nickname", emailLogin);
+                            editor.putString("nickname", nickLogin);
                             editor.putString("password", passLogin);
                             editor.apply();
-                            getUserData(emailLogin);
+                            getUserData(nickLogin);
                             startActivity(new Intent(LoginActivity.this, CategorySelectionActivity.class));
                             finish();
                         } else if (response.equals("authi")) {
