@@ -76,6 +76,7 @@ public class TimeSelectionActivity extends AppCompatActivity implements View.OnC
                 Log.i("TAG", url);
                 Log.i("TAG",response);
                 posts = new GsonBuilder().create().fromJson(response, Post.class);
+                Log.i("TAG",posts.getPostObjects().get(0).getTitle());
                 progressDialog.cancel();
                 startActivity(intent);
                 finish();

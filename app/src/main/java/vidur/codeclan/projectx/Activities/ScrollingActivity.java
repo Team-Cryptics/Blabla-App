@@ -82,9 +82,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(rvBookmarksViewHolder holder, int position) {
-            Picasso.with(ScrollingActivity.this).load(bookmark.getObjects().get(position).getPostImage().toString()).into(holder.imageView);
-            holder.textView.setText(bookmark.getObjects().get(position).getPostTitle().toString());
-            holder.textView.setText(bookmark.getObjects().get(position).getPostBody().toString());
+            Picasso.with(ScrollingActivity.this).load(bookmark.getObjects().get(position).getImage().toString()).into(holder.imageView);
+            holder.textView.setText(bookmark.getObjects().get(position).getTitle().toString());
+            holder.textView.setText(bookmark.getObjects().get(position).getBody().toString());
         }
 
         @Override

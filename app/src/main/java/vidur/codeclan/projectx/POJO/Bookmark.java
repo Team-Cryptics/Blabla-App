@@ -10,7 +10,7 @@ public class Bookmark {
     @SerializedName("num_results")
     private Long mNumResults;
     @SerializedName("objects")
-    private List<Object> mObjects;
+    private List<PostObject> mObjects;
     @SerializedName("page")
     private Long mPage;
     @SerializedName("total_pages")
@@ -24,11 +24,11 @@ public class Bookmark {
         mNumResults = numResults;
     }
 
-    public List<Object> getObjects() {
+    public List<PostObject> getObjects() {
         return mObjects;
     }
 
-    public void setObjects(List<Object> objects) {
+    public void setObjects(List<PostObject> objects) {
         mObjects = objects;
     }
 

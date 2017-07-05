@@ -9,9 +9,9 @@ public class Post {
     @SerializedName("num_results")
     @Expose
     private Integer numResults;
-    @SerializedName("postObjects")
+    @SerializedName("objects")
     @Expose
-    private List<PostObject> postObjects = null;
+    private List<PostObject> postObjects;
     @SerializedName("page")
     @Expose
     private Integer page;
