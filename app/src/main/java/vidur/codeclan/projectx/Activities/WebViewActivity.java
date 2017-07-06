@@ -9,27 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import retrofit2.http.POST;
 import vidur.codeclan.projectx.R;
 
 
@@ -41,7 +31,6 @@ public class WebViewActivity extends AppCompatActivity {
     Integer postID;
     SharedPreferences sharedPreferences;
     String userEmail;
-    ImageButton ibFav;
 
 
     @Override
@@ -49,36 +38,18 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_web);
         web = (WebView) findViewById(R.id.webview);
-        ibFav = (ImageButton) findViewById(R.id.ibFav);
-        ibFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Volley.newRequestQueue(WebViewActivity.this).add(new StringRequest(Request.Method.POST,
-                        "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getObjects().get(0).getId(),
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(WebViewActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
 
-                    }
-                }));
-            }
-        });
 
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        userEmail = sharedPreferences.getString("email",null);
+        userEmail = sharedPreferences.getString("email", null);
 
-        progress=new ProgressDialog(this);
+        progress = new ProgressDialog(this);
         progress.setMessage("Loading ...");
         progress.setIndeterminate(true);
 
         progress.show();
         String url = getIntent().getStringExtra("url");
-        postID = getIntent().getIntExtra("postID",-1);
+        postID = getIntent().getIntExtra("postID", -1);
 
         web.setWebViewClient(new myWebClient());
         web.getSettings().setJavaScriptEnabled(true);
@@ -88,8 +59,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     }
 
-    public class myWebClient extends WebViewClient
-    {
+    public class myWebClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             // TODO Auto-generated method stub
@@ -113,8 +83,7 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && web.canGoBack()) {
             web.goBack();
             Log.i("TAG", "onKeyDown");
@@ -125,31 +94,40 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.webview_activity_menu,menu);
+        getMenuInflater().inflate(R.menu.webview_activity_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_bookmark :
+        switch (item.getItemId()) {
+            case R.id.action_bookmark:
 
-                Volley.newRequestQueue(this).add(new StringRequest(Request.Method.POST, " ", new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener() {
+                String bookmarkUrl = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getUserObjects().get(0).getId();
+                Log.i("TAG",bookmarkUrl);
+                Volley.newRequestQueue(WebViewActivity.this).add(new StringRequest(Request.Method.POST,bookmarkUrl
+                        ,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(WebViewActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
+                                Log.i("TAG","Done");
+                            }
+                        }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.i("TAG","Error");
                     }
                 }));
 
-
                 break;
 
-            case R.id.action_share :
+            case R.id.action_share:
+
+
+
+
+
                 break;
         }
 

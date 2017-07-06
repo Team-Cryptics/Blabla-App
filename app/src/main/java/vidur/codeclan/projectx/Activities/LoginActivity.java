@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
+
     public static User globalUser;
 
     LoginButton lg;
@@ -210,6 +211,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(String response) {
 
+                Log.d("TAG",response);
                 User user = new GsonBuilder().create().fromJson(response, User.class);
                 //Use user further.
                 globalUser = user;

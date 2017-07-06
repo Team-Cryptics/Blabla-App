@@ -1,51 +1,54 @@
-
 package vidur.codeclan.projectx.POJO;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
 public class Bookmark {
 
     @SerializedName("num_results")
-    private Long mNumResults;
+    @Expose
+    private Integer numResults;
     @SerializedName("objects")
-    private List<PostObject> mObjects;
+    @Expose
+    private List<BookmarkObject> objects = null;
     @SerializedName("page")
-    private Long mPage;
+    @Expose
+    private Integer page;
     @SerializedName("total_pages")
-    private Long mTotalPages;
+    @Expose
+    private Integer totalPages;
 
-    public Long getNumResults() {
-        return mNumResults;
+    public Integer getNumResults() {
+        return numResults;
     }
 
-    public void setNumResults(Long numResults) {
-        mNumResults = numResults;
+    public void setNumResults(Integer numResults) {
+        this.numResults = numResults;
     }
 
-    public List<PostObject> getObjects() {
-        return mObjects;
+    public List<BookmarkObject> getObjects() {
+        return objects;
     }
 
-    public void setObjects(List<PostObject> objects) {
-        mObjects = objects;
+    public void setObjects(List<BookmarkObject> objects) {
+        this.objects = objects;
     }
 
-    public Long getPage() {
-        return mPage;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setPage(Long page) {
-        mPage = page;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Long getTotalPages() {
-        return mTotalPages;
+    public Integer getTotalPages() {
+        return totalPages;
     }
 
-    public void setTotalPages(Long totalPages) {
-        mTotalPages = totalPages;
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
 }

@@ -22,15 +22,14 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        Log.i("TAG",position+" ");
         switch (position){
             case 0:
                 return new VideosFragment();
             case 1:
                     return new ArticlesFragment();
 
-            case 2:
-                return new PodcastFragment();
+//            case 2:
+//                return new PodcastFragment();
         }
 
         return null;
@@ -38,6 +37,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+//        return 3;
+        return 2;
     }
 }

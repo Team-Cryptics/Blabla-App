@@ -11,11 +11,4 @@
         android:layout_weight="1">
     </WebView>
 
-    <ImageButton
-        android:id="@+id/ibFav"
-        android:src="@android:drawable/btn_star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
 </RelativeLayout>

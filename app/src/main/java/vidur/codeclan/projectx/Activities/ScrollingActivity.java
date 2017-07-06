@@ -24,17 +24,21 @@ import vidur.codeclan.projectx.R;
 
 public class ScrollingActivity extends AppCompatActivity {
     Bookmark bookmark;
+    TextView tvBookmarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
 
+        Log.i("TAG",LoginActivity.globalUser.getUserObjects().get(0).getEmail());
+
         ImageView ivUser = (ImageView) findViewById(R.id.ivUser);
-        Picasso.with(this).load("ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/getbitmap/" + LoginActivity.globalUser.getObjects().get(0).getNickname()).into(ivUser);
+        Picasso.with(this).load("http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/getbitmap/" + LoginActivity.globalUser.getUserObjects().get(0).getNickname()).into(ivUser);
         TextView tvNickname = (TextView) findViewById(R.id.tvName);
-        tvNickname.setText(LoginActivity.globalUser.getObjects().get(0).getNickname());
-        final TextView tvBookmarks = (TextView) findViewById(R.id.tvBookmarks);
+        tvNickname.setText(LoginActivity.globalUser.getUserObjects().get(0).getNickname());
+
+        tvBookmarks = (TextView) findViewById(R.id.tvBookmarks);
 
         findViewById(R.id.fabSettings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +47,19 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET,
-                "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark",
+        String urlBookmark = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark?q={\"filters\":[{\"name\":\"user_email\",\"op\":\"eq\",\"val\":\""+LoginActivity.globalUser.getUserObjects().get(0).getEmail()+"\"}]}";
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET,urlBookmark,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.i("TAG",response);
                         bookmark = new GsonBuilder().create().fromJson(response, Bookmark.class);
                         tvBookmarks.setText(String.valueOf(bookmark.getObjects().size()));
                         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvBookmarks);
                         recyclerView.setLayoutManager(new LinearLayoutManager(ScrollingActivity.this));
                         recyclerView.setAdapter(new rvBookmarkAdapter());
+                        recyclerView.setHasFixedSize(true);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -63,13 +70,14 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     public class rvBookmarksViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView, textView1;
+        ImageView image_id;
+        TextView heading, subheading;
+
         public rvBookmarksViewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.ivUser);
-            textView = (TextView) itemView.findViewById(R.id.tvBookmarks);
-            textView1 = (TextView) itemView.findViewById(R.id.tvName);
+            image_id = (ImageView) itemView.findViewById(R.id.iv_image);
+            heading = (TextView) itemView.findViewById(R.id.tv_heading);
+            subheading = (TextView) itemView.findViewById(R.id.tv_subheading);
         }
     }
 
@@ -82,9 +90,11 @@ public class ScrollingActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(rvBookmarksViewHolder holder, int position) {
-            Picasso.with(ScrollingActivity.this).load(bookmark.getObjects().get(position).getImage().toString()).into(holder.imageView);
-            holder.textView.setText(bookmark.getObjects().get(position).getTitle().toString());
-            holder.textView.setText(bookmark.getObjects().get(position).getBody().toString());
+
+            //Giving null point exception
+            Picasso.with(ScrollingActivity.this).load(bookmark.getObjects().get(position).getPostImage()).into(holder.image_id);
+            holder.heading.setText(bookmark.getObjects().get(position).getPostTitle());
+            holder.subheading.setText(bookmark.getObjects().get(position).getPostBody());
         }
 
         @Override
