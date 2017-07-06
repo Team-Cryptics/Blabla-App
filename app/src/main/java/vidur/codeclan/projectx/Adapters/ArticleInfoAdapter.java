@@ -68,9 +68,9 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
             ctx = c;
             postsHolder = info;
             view.setOnClickListener(this);
-            image_id = (ImageView) view.findViewById(R.id.imageView);
-            heading = (TextView) view.findViewById(R.id.textView);
-            subheading = (TextView) view.findViewById(R.id.textView1);
+            image_id = (ImageView) view.findViewById(R.id.iv_image);
+            heading = (TextView) view.findViewById(R.id.tv_heading);
+            subheading = (TextView) view.findViewById(R.id.tv_subheading);
 
         }
 
@@ -78,7 +78,6 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            Log.i("TAG", "Yo " + v.getId() + " Position" + position);
 
             Intent intent = new Intent(ctx, WebViewActivity.class);
             intent.putExtra("url", postsHolder.getPostObjects().get(position).getLink());

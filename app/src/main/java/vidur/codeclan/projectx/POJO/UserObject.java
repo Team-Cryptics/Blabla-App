@@ -14,7 +14,7 @@ public class UserObject {
     private Boolean activationStatus;
     @SerializedName("bitmap")
     @Expose
-    private java.lang.Object bitmap;
+    private String bitmap;
     @SerializedName("email")
     @Expose
     private String email;
@@ -29,7 +29,7 @@ public class UserObject {
     private String nickname;
     @SerializedName("tokens")
     @Expose
-    private java.lang.Object tokens;
+    private String tokens;
 
     public Boolean getActivationStatus() {
         return activationStatus;
@@ -39,11 +39,11 @@ public class UserObject {
         this.activationStatus = activationStatus;
     }
 
-    public java.lang.Object getBitmap() {
+    public String getBitmap() {
         return bitmap;
     }
 
-    public void setBitmap(java.lang.Object bitmap) {
+    public void setBitmap(String bitmap) {
         this.bitmap = bitmap;
     }
 
@@ -79,11 +79,11 @@ public class UserObject {
         this.nickname = nickname;
     }
 
-    public java.lang.Object getTokens() {
+    public String getTokens() {
         return tokens;
     }
 
-    public void setTokens(java.lang.Object tokens) {
+    public void setTokens(String tokens) {
         this.tokens = tokens;
     }
 }

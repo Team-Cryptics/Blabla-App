@@ -2,8 +2,16 @@ package vidur.codeclan.projectx.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -19,13 +27,14 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     String video;
+    Integer postID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
 
-
+        postID = getIntent().getIntExtra("postID", -1);
         String Url = getIntent().getStringExtra("VideoUrl");
         video = Url.replace("https://www.youtube.com/watch?v=","");
 
@@ -72,6 +81,48 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         if (!wasRestored) {
             YPlayer.cueVideo(video);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.webview_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_bookmark:
+
+                String bookmarkUrl = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getUserObjects().get(0).getId();
+                Log.i("TAG",bookmarkUrl);
+                Volley.newRequestQueue(YoutubeActivity.this).add(new StringRequest(Request.Method.POST,bookmarkUrl
+                        ,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(YoutubeActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
+                                Log.i("TAG","Done");
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("TAG","Error");
+                    }
+                }));
+
+                break;
+
+            case R.id.action_share:
+
+
+
+
+
+                break;
+        }
+
+        return true;
     }
 
 }

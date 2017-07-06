@@ -1,21 +1,17 @@
 package vidur.codeclan.projectx.POJO;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-/**
- * Created by samarthgupta on 27/06/17.
- */
-
 public class User {
+
     @SerializedName("num_results")
     @Expose
     private Integer numResults;
     @SerializedName("objects")
     @Expose
-    private List<UserObject> objects = null;
+    private List<UserObject> userObjects = null;
     @SerializedName("page")
     @Expose
     private Integer page;
@@ -31,12 +27,12 @@ public class User {
         this.numResults = numResults;
     }
 
-    public List<UserObject> getObjects() {
-        return objects;
+    public List<UserObject> getUserObjects() {
+        return userObjects;
     }
 
-    public void setObjects(List<UserObject> objects) {
-        this.objects = objects;
+    public void setUserObjects(List<UserObject> userObjects) {
+        this.userObjects = userObjects;
     }
 
     public Integer getPage() {
@@ -54,4 +50,5 @@ public class User {
     public void setTotalPages(Integer totalPages) {
         this.totalPages = totalPages;
     }
+
 }
