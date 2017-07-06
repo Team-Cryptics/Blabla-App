@@ -62,6 +62,7 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
 
         public InfoViewHolder(View view, Post info, Context c) {
             super(view);
+
             infoForHolder = info;
             ctx = c;
             view.setOnClickListener(this);

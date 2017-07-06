@@ -7,7 +7,7 @@
             android:title="Profiles" />
         <item
             android:id="@+id/Settings"
-            android:title="Settings" />
+            android:title="Edit Categories" />
         <item
             android:id="@+id/About"
             android:title="About" />
