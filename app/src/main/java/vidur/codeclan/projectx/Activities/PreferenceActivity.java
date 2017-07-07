@@ -31,6 +31,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity{
            // lp1 = (ListPreference)findPreference("downloadType");
             edit_categories = (CheckBoxPreference)findPreference("applicationUpdates");
             edit_categories.setDefaultValue("false");
+            edit_categories.equals(false);
 //            lp1.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 //    @Override
 //    public boolean onPreferenceClick(Preference preference) {
