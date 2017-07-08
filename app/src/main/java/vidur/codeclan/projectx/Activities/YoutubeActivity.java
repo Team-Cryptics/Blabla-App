@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,18 +29,23 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     String video;
     Integer postID;
-
+    String postName;
+    TextView postname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
 
+        postname= (TextView)findViewById(R.id.postName);
         postID = getIntent().getIntExtra("postID", -1);
+        postName = getIntent().getStringExtra("postName");
         String Url = getIntent().getStringExtra("VideoUrl");
         video = Url.replace("https://www.youtube.com/watch?v=","");
 
         YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(YoutubeDeveloperKey, this);
+
+        postname.setText(postName);
     }
 //
 //        @Override
@@ -115,11 +121,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
             case R.id.action_share:
 
-
-
-
-
-                break;
+            break;
         }
 
         return true;

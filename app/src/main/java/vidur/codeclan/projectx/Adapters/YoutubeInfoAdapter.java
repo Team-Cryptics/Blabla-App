@@ -79,6 +79,7 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
             Intent intent = new Intent(ctx, YoutubeActivity.class);
             intent.putExtra("VideoUrl", infoForHolder.getPostObjects().get(position).getLink());
             intent.putExtra("postID",infoForHolder.getPostObjects().get(position).getId());
+            intent.putExtra("postName",infoForHolder.getPostObjects().get(position).getTitle());
             this.ctx.startActivity(intent);
 
         }
