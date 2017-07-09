@@ -38,6 +38,8 @@ public class CategorySelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
+
+        getSharedPreferences("User", MODE_PRIVATE).edit().remove("category").apply();
         if (getSharedPreferences("User", MODE_PRIVATE).getString("category", null) != null) {
             startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
             finish();
@@ -50,12 +52,12 @@ public class CategorySelectionActivity extends AppCompatActivity {
         final ArrayList<CategoriesClass> list = new ArrayList<>();
         fab_proceed.setVisibility(View.INVISIBLE);
 
-        list.add(new CategoriesClass("Business & Finance","http://meghancurrie.ca/wp-content/uploads/2015/09/Finance1.jpg"));
-        list.add(new CategoriesClass("Technology","https://www.siliconfeed.com/wp-content/uploads/2017/04/20161028-technology-top-image.jpg"));
-        list.add(new CategoriesClass("Data Structures & Algorithms","https://cdn3.iconfinder.com/data/icons/abstract-1/512/algorithm-256.png"));
-        list.add(new CategoriesClass("Lifehacks","https://cdn1.12stone.com/wp-content/uploads/2014/10/Life-Hacks.jpg"));
-        list.add(new CategoriesClass("Machine Learning & AI","https://cdn2.techworld.com/cmsdata/features/3623340/deeplearning_neuralnetworks_AI_thumb800.jpg"));
-        list.add(new CategoriesClass("Soft skills","https://mediacm.blob.core.windows.net/media/2016/08/soft-skills.jpg"));
+        list.add(new CategoriesClass("Business & Finance","BusinessAndFinance","http://meghancurrie.ca/wp-content/uploads/2015/09/Finance1.jpg"));
+        list.add(new CategoriesClass("Technology","Technology","https://www.siliconfeed.com/wp-content/uploads/2017/04/20161028-technology-top-image.jpg"));
+        list.add(new CategoriesClass("Data Structures & Algorithms","DSAndAlgo","https://cdn3.iconfinder.com/data/icons/abstract-1/512/algorithm-256.png"));
+        list.add(new CategoriesClass("Life Hacks","Lifehacks","https://cdn1.12stone.com/wp-content/uploads/2014/10/Life-Hacks.jpg"));
+        list.add(new CategoriesClass("Machine Learning & AI","MachineLearningAndAI","https://cdn2.techworld.com/cmsdata/features/3623340/deeplearning_neuralnetworks_AI_thumb800.jpg"));
+        list.add(new CategoriesClass("Soft skills","Softskills","https://mediacm.blob.core.windows.net/media/2016/08/soft-skills.jpg"));
 
 
         adapter = new CategoryAdapter(list,this);
@@ -71,7 +73,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
                 for( i =0;i<list.size();i++){
                     if(list.get(i).getClicked()){
 
-                        categoryURl += "{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22"+list.get(i).getCategoryName()+"%22},";
+                        categoryURl += "{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22"+list.get(i).getCategoryType()+"%22},";
 
                     }
                 }
@@ -172,29 +174,3 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
 }
 
-//// http://ec2-13-58-169-227.us-east-2.compute.amazonaws.com/api/user?q={%22filters%22:[{"or":[{%22name%22:%22types%22,%22op%22:%22eq%22,%22val%22:%22Business%20&%20Finance%22}]}]}
-//http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/post?q={%22filters%22:[{%22name%22:%22category%22,%22op%22:%22eq%22,%22value%22:%225%20Minutes%22},%22or%22:[{%22name%22:%22types%22,%22op%22:%22eq%22,%22value%22:%22Lifehacks%22},{%22name%22:%22types%22,%22op%22:%22eq%22,%22value%22:%22Business%20&%20Finance%22}]]}
-//?q=
-//        {
-//        "filters":
-//                    [
-//                        {
-//                            "name":"category",
-//                            "op":"eq",
-//                            "value":"5 Minutes"
-//                        },
-//                        "or":
-//                                [
-//                                    {
-//                                        "name":"types",
-//                                        "op":"eq",
-//                                        "value":"Lifehacks"
-//                                    },
-//                                    {
-//                                        "name":"types",
-//                                        "op":"eq",
-//                                        "value":"Business%20&%20Finance"
-//                                    }
-//                                ]
-//                    ]
-//        }

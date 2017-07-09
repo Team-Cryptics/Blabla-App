@@ -7,15 +7,24 @@ package vidur.codeclan.projectx.POJO;
 public class CategoriesClass {
 
     String categoryName;
+    String categoryType;
     String categoryImageURL;
     Boolean isClicked;
 
-    public CategoriesClass(String categoryName, String categoryImageURL) {
+    public CategoriesClass(String categoryName, String categoryType, String categoryImageURL) {
         this.categoryName = categoryName;
         this.categoryImageURL = categoryImageURL;
+        this.categoryType = categoryType;
         this.isClicked = false;
     }
 
+    public String getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
 
     public String getCategoryName() {
         return categoryName;

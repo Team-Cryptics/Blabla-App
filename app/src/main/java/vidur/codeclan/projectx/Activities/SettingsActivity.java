@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         if (checked) {
-            getSharedPreferences("User", MODE_PRIVATE).edit().remove("category");
+            getSharedPreferences("User", MODE_PRIVATE).edit().remove("category").apply();
         }
         super.onDestroy();
     }

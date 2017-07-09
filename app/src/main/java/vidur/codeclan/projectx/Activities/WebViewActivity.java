@@ -2,6 +2,7 @@ package vidur.codeclan.projectx.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class WebViewActivity extends AppCompatActivity {
     Integer postID;
     SharedPreferences sharedPreferences;
     String userEmail;
-
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,8 @@ public class WebViewActivity extends AppCompatActivity {
         progress.setIndeterminate(true);
 
         progress.show();
-        String url = getIntent().getStringExtra("url");
+
+        url = getIntent().getStringExtra("url");
         postID = getIntent().getIntExtra("postID", -1);
 
         web.setWebViewClient(new myWebClient());
@@ -123,7 +125,10 @@ public class WebViewActivity extends AppCompatActivity {
                 break;
 
             case R.id.action_share:
-
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, url);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
 
 
