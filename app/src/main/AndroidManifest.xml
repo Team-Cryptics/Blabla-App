@@ -14,29 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Holo.Light.ButtonBar">
-        <activity android:name=".Activities.YoutubeActivity"></activity>
-
-
+        <activity android:name=".Activities.YoutubeActivity" />
         <activity
             android:name=".Activities.CategorySelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
-        </activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" ></activity>
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
@@ -57,21 +57,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-
         </activity>
-               <activity
+        <activity
             android:name=".Activities.ScrollingActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
-
         </activity>
-        <activity android:name=".Activities.ForgetPassActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog"/>
-
+        <activity
+            android:name=".Activities.ForgetPassActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity
             android:name=".Activities.TimeSelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity android:name=".Activities.SettingsActivity">
+
+        </activity>
+        <activity android:name=".Activities.PreferenceActivity">
 
         </activity>
     </application>

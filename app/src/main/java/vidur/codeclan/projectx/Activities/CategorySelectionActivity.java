@@ -41,6 +41,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
         getSharedPreferences("User", MODE_PRIVATE).edit().remove("category").apply();
         if (getSharedPreferences("User", MODE_PRIVATE).getString("category", null) != null) {
+
             startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));
             finish();
         }
