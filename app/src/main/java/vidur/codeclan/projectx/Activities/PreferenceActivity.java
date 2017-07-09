@@ -32,16 +32,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity{
             edit_categories = (CheckBoxPreference)findPreference("applicationUpdates");
             edit_categories.setDefaultValue("false");
             edit_categories.equals(false);
-//            lp1.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-//    @Override
-//    public boolean onPreferenceClick(Preference preference) {
-//
-//           if (preference.toString().equals("1")){
-//            Toast.makeText(getActivity(),lp1.getValue(),Toast.LENGTH_LONG).show();
-//        }
-//        return false;
-//    }
-//});
+
 
           edit_categories.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
               @Override

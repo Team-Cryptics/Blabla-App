@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/action_bookmark"
-        android:icon="@android:drawable/checkbox_on_background"
+        android:icon="@drawable/bookmark"
         android:title="Bookmark"
         app:showAsAction="always" />
 

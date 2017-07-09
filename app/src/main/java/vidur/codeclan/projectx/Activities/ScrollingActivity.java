@@ -1,7 +1,9 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +45,7 @@ public class ScrollingActivity extends AppCompatActivity {
         findViewById(R.id.fabSettings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ScrollingActivity.this, SettingsActivity.class));
+                startActivity(new Intent(ScrollingActivity.this, PreferenceActivity.class));
             }
         });
 
@@ -55,6 +57,17 @@ public class ScrollingActivity extends AppCompatActivity {
                         Log.i("TAG",response);
                         bookmark = new GsonBuilder().create().fromJson(response, Bookmark.class);
                         tvBookmarks.setText(String.valueOf(bookmark.getObjects().size()));
+                        if (bookmark.getObjects().size()==0){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ScrollingActivity.this);
+                            builder.setMessage("You have no bookmarks");
+                            builder.setPositiveButton("Go back", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            });
+
+                        }
                         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvBookmarks);
                         recyclerView.setLayoutManager(new LinearLayoutManager(ScrollingActivity.this));
                         recyclerView.setAdapter(new rvBookmarkAdapter());

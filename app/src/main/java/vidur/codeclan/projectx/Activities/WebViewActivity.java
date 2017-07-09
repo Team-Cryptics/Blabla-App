@@ -45,7 +45,7 @@ public class WebViewActivity extends AppCompatActivity {
         userEmail = sharedPreferences.getString("email", null);
 
         progress = new ProgressDialog(this);
-        progress.setMessage("Loading ...");
+        progress.setMessage("Loading page");
         progress.setIndeterminate(true);
 
         progress.show();
@@ -68,7 +68,6 @@ public class WebViewActivity extends AppCompatActivity {
 
             super.onPageStarted(view, url, favicon);
             Log.i("TAG", "onPageStarted");
-
 
         }
 
@@ -105,6 +104,10 @@ public class WebViewActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_bookmark:
 
+                final ProgressDialog dial = new ProgressDialog(WebViewActivity.this);
+                dial.setMessage("Adding bookmark...");
+                dial.setTitle("Please wait");
+                dial.show();
                 String bookmarkUrl = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getUserObjects().get(0).getId();
                 Log.i("TAG",bookmarkUrl);
                 Volley.newRequestQueue(WebViewActivity.this).add(new StringRequest(Request.Method.POST,bookmarkUrl
@@ -113,6 +116,7 @@ public class WebViewActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(WebViewActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
+                                dial.dismiss();
                                 Log.i("TAG","Done");
                             }
                         }, new Response.ErrorListener() {
