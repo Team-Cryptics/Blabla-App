@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -94,10 +95,20 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("TAG","BACK");
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_bookmark:
 
+                final ProgressDialog dial = new ProgressDialog(YoutubeActivity.this);
+                dial.setMessage("Adding bookmark...");
+                dial.setTitle("Please wait");
+                dial.show();
                 String bookmarkUrl = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/bookmark/" + String.valueOf(postID) + "/" + LoginActivity.globalUser.getUserObjects().get(0).getId();
                 Log.i("TAG",bookmarkUrl);
                 Volley.newRequestQueue(YoutubeActivity.this).add(new StringRequest(Request.Method.POST,bookmarkUrl
@@ -106,6 +117,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(YoutubeActivity.this, "New Bookmark Added", Toast.LENGTH_SHORT).show();
+                                dial.dismiss();
                                 Log.i("TAG","Done");
                             }
                         }, new Response.ErrorListener() {

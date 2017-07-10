@@ -4,26 +4,11 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.GsonBuilder;
-
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.http.GET;
-import vidur.codeclan.projectx.POJO.Post;
 import vidur.codeclan.projectx.R;
 import vidur.codeclan.projectx.Adapters.TabsPagerAdapter;
 
@@ -102,7 +87,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
         switch (item.getItemId()){
 
             case R.id.Profile :
-                startActivity(new Intent(this, ScrollingActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 break;
 
             case R.id.Signout:

@@ -21,7 +21,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity{
     }
 
     public static class MyPreferenceFragment extends PreferenceFragment
-    {   CheckBoxPreference edit_categories;
+    {   Preference edit_categories;
        // ListPreference lp1;
         @Override
         public void onCreate(final Bundle savedInstanceState)
@@ -29,7 +29,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity{
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
            // lp1 = (ListPreference)findPreference("downloadType");
-            edit_categories = (CheckBoxPreference)findPreference("applicationUpdates");
+            edit_categories = (Preference) findPreference("applicationUpdates");
             edit_categories.setDefaultValue("false");
             edit_categories.equals(false);
 
