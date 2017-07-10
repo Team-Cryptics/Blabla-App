@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="#1B2736"
     android:orientation="vertical"
     tools:context="vidur.codeclan.projectx.Activities.LoginActivity">
 
@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="15dp"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_log" />
+            android:src="@drawable/login_image" />
 
     </LinearLayout>
 
@@ -160,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
-                    android:background="@color/colorPrimary"
+                    android:background="#314968"
                     android:elevation="200dp"
                     android:text="Login"
                     android:textColor="#ffffff" />
@@ -253,7 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:background="@color/colorPrimary"
+                android:background="#314968"
                 android:text="Register"
                 android:textColor="#ffffff" />
 

@@ -42,12 +42,21 @@ public class ScrollingActivity extends AppCompatActivity {
 
         tvBookmarks = (TextView) findViewById(R.id.tvBookmarks);
 
-        findViewById(R.id.fabSettings).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ScrollingActivity.this, PreferenceActivity.class));
-            }
-        });
+//        findViewById(R.id.fabSettings).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ScrollingActivity.this, PreferenceActivity.class));
+//            }
+//        });
+//         <android.support.design.widget.FloatingActionButton
+//        android:id="@+id/fabSettings"
+//        android:layout_width="wrap_content"
+//        android:layout_height="wrap_content"
+//        android:layout_margin="@dimen/fab_margin"
+//        android:src="@android:drawable/ic_menu_preferences"
+//        app:layout_anchorGravity="end"
+//        app:layout_anchor="@id/app_bar"
+//                />
 
         String urlBookmark = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark?q={\"filters\":[{\"name\":\"user_email\",\"op\":\"eq\",\"val\":\""+LoginActivity.globalUser.getUserObjects().get(0).getEmail()+"\"}]}";
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET,urlBookmark,

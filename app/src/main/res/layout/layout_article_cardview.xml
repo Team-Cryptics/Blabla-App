@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#1B2736">
 
 
         <RelativeLayout
@@ -51,7 +52,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
                 android:singleLine="true"
-                android:ellipsize="end"/>
+                android:ellipsize="end"
+                android:textColor="#ffffff"/>
 
 
             <TextView
@@ -59,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3sp"
+                android:textColor="#ffffff"
                 android:layout_marginLeft="10sp"
                 android:text="Sub heading"
                 android:singleLine="true"

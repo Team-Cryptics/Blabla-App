@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B2736"
     tools:context="vidur.codeclan.projectx.Activities.SettingsActivity">
 
     <Switch

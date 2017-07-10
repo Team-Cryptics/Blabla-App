@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333"
+    android:background="#1B2736"
     tools:context="vidur.codeclan.projectx.Activities.PodcastPlayerActivity">
 
     <android.support.v7.widget.RecyclerView
