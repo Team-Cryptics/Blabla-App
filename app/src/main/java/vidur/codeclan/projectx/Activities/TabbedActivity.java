@@ -97,6 +97,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
                 break;
 
             case R.id.About:
+                startActivity(new Intent(TabbedActivity.this, AboutUs.class));
                 break;
 
             case R.id.Settings:

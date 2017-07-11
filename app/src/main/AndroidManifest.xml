@@ -14,13 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Holo.Light.ButtonBar">
-        <activity android:name=".Activities.YoutubeActivity"
-            android:parentActivityName=".Activities.TabbedActivity"
-            />
+        <activity
+            android:name=".Activities.YoutubeActivity"
+            android:parentActivityName=".Activities.TabbedActivity" />
         <activity
             android:name=".Activities.CategorySelectionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -45,8 +44,8 @@
         <activity android:name=".Activities.TabbedActivity" />
         <activity
             android:name=".Activities.WebViewActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:parentActivityName=".Activities.TabbedActivity"/>
+            android:parentActivityName=".Activities.TabbedActivity"
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".Activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -55,16 +54,12 @@
         <activity
             android:name=".Activities.SplashscreenActivity"
             android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.ProfileActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:parentActivityName=".Activities.TabbedActivity">
+            android:parentActivityName=".Activities.TabbedActivity"
+            android:theme="@style/Theme.AppCompat">
 
         </activity>
         <activity
@@ -76,10 +71,18 @@
         <activity android:name=".Activities.SettingsActivity">
 
         </activity>
-        <activity android:name=".Activities.PreferenceActivity"
-            android:parentActivityName=".Activities.TabbedActivity"
-            >
+        <activity
+            android:name=".Activities.PreferenceActivity"
+            android:parentActivityName=".Activities.TabbedActivity">
 
+        </activity>
+        <activity android:name=".Activities.AboutUs"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
