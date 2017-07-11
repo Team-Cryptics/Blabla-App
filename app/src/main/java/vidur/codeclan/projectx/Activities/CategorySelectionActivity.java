@@ -39,7 +39,6 @@ public class CategorySelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_selection);
 
 
-        getSharedPreferences("User", MODE_PRIVATE).edit().remove("category").apply();
         if (getSharedPreferences("User", MODE_PRIVATE).getString("category", null) != null) {
 
             startActivity(new Intent(CategorySelectionActivity.this,TimeSelectionActivity.class));

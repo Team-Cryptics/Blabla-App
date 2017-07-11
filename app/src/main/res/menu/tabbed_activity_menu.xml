@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Profile"
-            android:title="Profiles" />
+            android:title="Profile" />
         <item
             android:id="@+id/Settings"
-            android:title="Edit Categories" />
+            android:title="Settings" />
         <item
             android:id="@+id/About"
             android:title="About" />

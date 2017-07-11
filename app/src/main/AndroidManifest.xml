@@ -14,11 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Holo.Light.ButtonBar">
-        <activity android:name=".Activities.YoutubeActivity" />
+        <activity android:name=".Activities.YoutubeActivity"
+            android:parentActivityName=".Activities.TabbedActivity"
+            />
         <activity
             android:name=".Activities.CategorySelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            </activity>
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -43,12 +45,13 @@
         <activity android:name=".Activities.TabbedActivity" />
         <activity
             android:name=".Activities.WebViewActivity"
-            android:parentActivityName=".Activities.TabbedActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName=".Activities.TabbedActivity"/>
         <activity
             android:name=".Activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            </activity>
+
+        </activity>
         <activity
             android:name=".Activities.SplashscreenActivity"
             android:theme="@style/Theme.Design.NoActionBar">
@@ -59,8 +62,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.ScrollingActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:name=".Activities.ProfileActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName=".Activities.TabbedActivity">
 
         </activity>
         <activity
@@ -72,7 +76,9 @@
         <activity android:name=".Activities.SettingsActivity">
 
         </activity>
-        <activity android:name=".Activities.PreferenceActivity">
+        <activity android:name=".Activities.PreferenceActivity"
+            android:parentActivityName=".Activities.TabbedActivity"
+            >
 
         </activity>
     </application>

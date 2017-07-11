@@ -1,7 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +23,7 @@ import com.squareup.picasso.Picasso;
 import vidur.codeclan.projectx.POJO.Bookmark;
 import vidur.codeclan.projectx.R;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     Bookmark bookmark;
     TextView tvBookmarks;
 
@@ -42,21 +41,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
         tvBookmarks = (TextView) findViewById(R.id.tvBookmarks);
 
-//        findViewById(R.id.fabSettings).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(ScrollingActivity.this, PreferenceActivity.class));
-//            }
-//        });
-//         <android.support.design.widget.FloatingActionButton
-//        android:id="@+id/fabSettings"
-//        android:layout_width="wrap_content"
-//        android:layout_height="wrap_content"
-//        android:layout_margin="@dimen/fab_margin"
-//        android:src="@android:drawable/ic_menu_preferences"
-//        app:layout_anchorGravity="end"
-//        app:layout_anchor="@id/app_bar"
-//                />
 
         String urlBookmark = "http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/bookmark?q={\"filters\":[{\"name\":\"user_email\",\"op\":\"eq\",\"val\":\""+LoginActivity.globalUser.getUserObjects().get(0).getEmail()+"\"}]}";
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET,urlBookmark,
@@ -67,7 +51,7 @@ public class ScrollingActivity extends AppCompatActivity {
                         bookmark = new GsonBuilder().create().fromJson(response, Bookmark.class);
                         tvBookmarks.setText(String.valueOf(bookmark.getObjects().size()));
                         if (bookmark.getObjects().size()==0){
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ScrollingActivity.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                             builder.setMessage("You have no bookmarks");
                             builder.setPositiveButton("Go back", new DialogInterface.OnClickListener() {
                                 @Override
@@ -78,7 +62,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
                         }
                         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvBookmarks);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(ScrollingActivity.this));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
                         recyclerView.setAdapter(new rvBookmarkAdapter());
                         recyclerView.setHasFixedSize(true);
 
@@ -114,7 +98,7 @@ public class ScrollingActivity extends AppCompatActivity {
         public void onBindViewHolder(rvBookmarksViewHolder holder, int position) {
 
             //Giving null point exception
-            Picasso.with(ScrollingActivity.this).load(bookmark.getObjects().get(position).getPostImage()).into(holder.image_id);
+            Picasso.with(ProfileActivity.this).load(bookmark.getObjects().get(position).getPostImage()).into(holder.image_id);
             holder.heading.setText(bookmark.getObjects().get(position).getPostTitle());
             holder.subheading.setText(bookmark.getObjects().get(position).getPostBody());
         }

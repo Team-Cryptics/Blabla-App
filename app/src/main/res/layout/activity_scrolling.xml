@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="#0F3042"
-    tools:context=".Activities.ScrollingActivity">
+    tools:context=".Activities.ProfileActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

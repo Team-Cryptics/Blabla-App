@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -44,9 +46,11 @@ public class WebViewActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", null);
 
+
         progress = new ProgressDialog(this);
         progress.setMessage("Loading page");
-        progress.setIndeterminate(true);
+        mHandler.sendMessageDelayed(new Message(), 8000);
+        progress.setCancelable(false);
 
         progress.show();
 
@@ -61,13 +65,23 @@ public class WebViewActivity extends AppCompatActivity {
 
     }
 
+    private final Handler mHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            super.handleMessage(msg);
+            if (progress.isShowing())
+               progress.dismiss();
+        }
+    };
+
     public class myWebClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             // TODO Auto-generated method stub
 
             super.onPageStarted(view, url, favicon);
-            Log.i("TAG", "onPageStarted");
 
         }
 
@@ -76,28 +90,52 @@ public class WebViewActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
 
             view.loadUrl(url);
-            progress.dismiss();
 
             return true;
 
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            progress.dismiss();
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && web.canGoBack()) {
-            web.goBack();
-            Log.i("TAG", "onKeyDown");
-            return true;
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (web.canGoBack()) {
+                        web.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (web.canGoBack()) {
+            web.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.webview_activity_menu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
