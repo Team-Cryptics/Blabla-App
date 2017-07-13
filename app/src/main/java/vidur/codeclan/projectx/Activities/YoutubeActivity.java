@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,6 +44,9 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         Url = getIntent().getStringExtra("VideoUrl");
         video = Url.replace("https://www.youtube.com/watch?v=","");
         postname.setText(postName);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(YoutubeDeveloperKey, this);
     }
@@ -134,12 +138,11 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Url);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
-
-
-
-
-                break;
+               break;
+            case android.R.id.home:{
+                Intent intent = new Intent(getApplicationContext(), TabbedActivity.class);
+                startActivity(intent);
+            }
         }
 
         return true;

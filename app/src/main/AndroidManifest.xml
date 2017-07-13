@@ -48,31 +48,35 @@
             android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
         <activity
             android:name=".Activities.SplashscreenActivity"
-            android:theme="@style/Theme.Design.NoActionBar" >
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.ProfileActivity"
             android:parentActivityName=".Activities.TabbedActivity"
-            android:theme="@style/Theme.AppCompat" >
-
-        </activity>
+            android:theme="@style/Theme.AppCompat"></activity>
         <activity
             android:name=".Activities.ForgetPassActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity
             android:name=".Activities.TimeSelectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".Activities.SettingsActivity" />
+        <activity android:name=".Activities.SettingsActivity"></activity>
         <activity
             android:name=".Activities.PreferenceActivity"
-            android:parentActivityName=".Activities.TabbedActivity" />
+            android:parentActivityName=".Activities.TabbedActivity"></activity>
+        <activity
+            android:name=".Activities.AboutUs"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
