@@ -29,6 +29,9 @@ public class ArticlesFragment extends Fragment {
 
     RecyclerView.LayoutManager layoutManager;
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

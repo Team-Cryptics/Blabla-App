@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         adapter = new TabsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-
+        viewPager.clearOnPageChangeListeners();
 
         actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(false);
@@ -57,7 +58,7 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
 
             @Override
             public void onPageSelected(int position) {
-
+                Log.i("TAG","Seletec"+ position);
             }
 
             @Override
@@ -110,17 +111,20 @@ public class TabbedActivity extends FragmentActivity implements android.app.Acti
 
     @Override
     public void onTabSelected(android.app.ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-            viewPager.setCurrentItem(tab.getPosition());
+
+        Log.i("TAG",tab.getText().toString()+" "+tab.getPosition());
+        viewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
     public void onTabUnselected(android.app.ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
+        Log.i("TAG","Unseleted"+ tab.getText() + tab.getPosition());
     }
 
     @Override
     public void onTabReselected(android.app.ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-
+//        viewPager.setCurrentItem(tab.getPosition());
     }
 
 

@@ -61,20 +61,24 @@
         <activity
             android:name=".Activities.ProfileActivity"
             android:parentActivityName=".Activities.TabbedActivity"
+            android:label="Profile"
             android:theme="@style/Theme.AppCompat"></activity>
         <activity
             android:name=".Activities.ForgetPassActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity
             android:name=".Activities.TimeSelectionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".Activities.SettingsActivity"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:label="Select time frame"/>
         <activity
             android:name=".Activities.PreferenceActivity"
-            android:parentActivityName=".Activities.TabbedActivity"></activity>
+            android:parentActivityName=".Activities.TabbedActivity"
+            android:label="Settings"></activity>
         <activity
             android:name=".Activities.AboutUs"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat"
+            android:label="About us"
+            android:parentActivityName=".Activities.TabbedActivity">
 
         </activity>
     </application>

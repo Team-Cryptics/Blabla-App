@@ -22,7 +22,6 @@ public class PreferenceActivity extends android.preference.PreferenceActivity{
 
     public static class MyPreferenceFragment extends PreferenceFragment
     {   Preference edit_categories;
-       // ListPreference lp1;
         @Override
         public void onCreate(final Bundle savedInstanceState)
         {

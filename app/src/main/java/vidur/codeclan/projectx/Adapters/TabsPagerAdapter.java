@@ -3,10 +3,8 @@ package vidur.codeclan.projectx.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import vidur.codeclan.projectx.Fragments.ArticlesFragment;
-import vidur.codeclan.projectx.Fragments.PodcastFragment;
 import vidur.codeclan.projectx.Fragments.VideosFragment;
 
 /**
@@ -22,11 +20,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        switch (position){
+        switch (position) {
             case 0:
                 return new VideosFragment();
             case 1:
-                    return new ArticlesFragment();
+                return new ArticlesFragment();
 
 //            case 2:
 //                return new PodcastFragment();

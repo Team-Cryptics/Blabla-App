@@ -9,8 +9,9 @@
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="aboutus">Welcome,\n\nShots is a platform excelling in content curation, to provide users a worth remembering learning and exploring experience, by giving them filtered content from the web, that can aptly match their time frame of exploration.\n\nThe content to you is available in forms ranging from Articles, Posts, to best suited Videos curated from YouTube, and postcards,just so that you can save your time from reading 1000\'s of words related to any field of your interest.\n\nIt\'s a mini-google for everything ranging from hardcore Tech to Crushing Business Strategies, to learning about Music, except you don\'t have to Google anything.\n\nYou don\'t know what to Google,use Shots.\n\nStop wasting your precious time on Social Media and start learning and exploring stuff using SHOTS.\n\nFind out what interests you and steals your heart away.</string>
+
 
     <string name="title_activity_settings">Settings</string>
 
@@ -28,50 +29,9 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
 
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
 
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
 
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <string-array name="multi_select_list_preference_default_value" />
 
