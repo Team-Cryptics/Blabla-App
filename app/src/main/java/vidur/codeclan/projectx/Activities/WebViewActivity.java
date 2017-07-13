@@ -1,5 +1,6 @@
 package vidur.codeclan.projectx.Activities;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,8 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_web);
         web = (WebView) findViewById(R.id.webview);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", null);
@@ -171,11 +174,14 @@ public class WebViewActivity extends AppCompatActivity {
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, url);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
-
-
-
                 break;
+
+            case android.R.id.home:{
+                Intent intent = new Intent(getApplicationContext(), TabbedActivity.class);
+                startActivity(intent);
+
+
+            }
         }
 
         return true;
