@@ -46,7 +46,13 @@ public class ArticleInfoAdapter extends RecyclerView.Adapter<ArticleInfoAdapter.
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
         List<PostObject> postObjects = info.getPostObjects();
-        Picasso.with(c).load(postObjects.get(position).getImage()).into(holder.image_id);
+        if(postObjects.get(position).getImage().equals("/static/userdata/avatar.png")){
+            Picasso.with(c).load(R.drawable.splashlogo).into(holder.image_id);
+        }
+        else {
+            Picasso.with(c).load(postObjects.get(position).getImage()).into(holder.image_id);
+        }
+
         holder.heading.setText(postObjects.get(position).getTitle());
         holder.subheading.setText(postObjects.get(position).getBody());
     }

@@ -43,7 +43,15 @@ public class YoutubeInfoAdapter extends RecyclerView.Adapter<YoutubeInfoAdapter.
     @Override
     public void onBindViewHolder(final InfoViewHolder holder, int position) {
 
-        Picasso.with(c).load(info.getPostObjects().get(position).getImage()).into(holder.image_id);
+
+        if(info.getPostObjects().get(position).getImage().equals("/static/userdata/avatar.png")){
+            Picasso.with(c).load(R.drawable.splashlogo).into(holder.image_id);
+        }
+        else {
+            Picasso.with(c).load(info.getPostObjects().get(position).getImage()).into(holder.image_id);
+        }
+
+
         holder.heading.setText(info.getPostObjects().get(position).getTitle());
 
     }

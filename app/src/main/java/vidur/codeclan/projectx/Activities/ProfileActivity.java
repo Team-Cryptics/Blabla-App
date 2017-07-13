@@ -35,9 +35,9 @@ public class ProfileActivity extends AppCompatActivity {
         Log.i("TAG",LoginActivity.globalUser.getUserObjects().get(0).getEmail());
 
         ImageView ivUser = (ImageView) findViewById(R.id.ivUser);
-        Picasso.with(this).load("http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/getbitmap/" + LoginActivity.globalUser.getUserObjects().get(0).getNickname()).into(ivUser);
+       // Picasso.with(this).load("http://ec2-52-14-50-89.us-east-2.compute.amazonaws.com/api/getbitmap/" + LoginActivity.globalUser.getUserObjects().get(0).getNickname()).into(ivUser);
         TextView tvNickname = (TextView) findViewById(R.id.tvName);
-        tvNickname.setText(LoginActivity.globalUser.getUserObjects().get(0).getNickname());
+        tvNickname.setText("Hi "+LoginActivity.globalUser.getUserObjects().get(0).getNickname()+"!");
 
         tvBookmarks = (TextView) findViewById(R.id.tvBookmarks);
 
@@ -98,7 +98,14 @@ public class ProfileActivity extends AppCompatActivity {
         public void onBindViewHolder(rvBookmarksViewHolder holder, int position) {
 
             //Giving null point exception
-            Picasso.with(ProfileActivity.this).load(bookmark.getObjects().get(position).getPostImage()).into(holder.image_id);
+            if(bookmark.getObjects().get(position).getPostImage().equals("/static/userdata/avatar.png")||bookmark.getObjects().get(position).getPostImage()==null) {
+                Picasso.with(ProfileActivity.this).load(R.drawable.splashlogo).into(holder.image_id);
+            }
+            else
+            {
+                Picasso.with(ProfileActivity.this).load(bookmark.getObjects().get(position).getPostImage()).into(holder.image_id);
+            }
+
             holder.heading.setText(bookmark.getObjects().get(position).getPostTitle());
             holder.subheading.setText(bookmark.getObjects().get(position).getPostBody());
         }
